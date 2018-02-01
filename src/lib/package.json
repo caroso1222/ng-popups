@@ -1,0 +1,21 @@
+{
+  "name": "ngx-confirm-dialog",
+  "version": "0.1.0",
+  "repository": {
+    "type": "git",
+    "url": "url"
+  },
+  "keywords": [
+    "angular"
+  ],
+  "license": "MIT",
+  "main": "./bundles/ngx-confirm-dialog.umd.js",
+  "es2015": "./esm2015/ngx-confirm-dialog.js",
+  "module": "./esm5/ngx-confirm-dialog.es5.js",
+  "typings": "./ngx-confirm-dialog.d.ts",
+  "peerDependencies": {
+    "@angular/core": "^5.0.0",
+    "@angular/common": "^5.0.0",
+    "@angular/http": "^5.0.0"
+  }
+}
