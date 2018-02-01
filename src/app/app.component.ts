@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { NgxQuickDialogService } from '../lib';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'app';
+
+  constructor(private dialog: NgxQuickDialogService) {}
+
+  open() {
+    this.dialog.confirm('Sure you want to continue?');
+  }
 }

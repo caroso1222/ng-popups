@@ -10,7 +10,7 @@
     "newLine": "lf",
     "module": "es2015",
     "moduleResolution": "node",
-    "outDir": "../dist/packages/ngx-confirm-dialog",
+    "outDir": "../dist/packages/ngx-quick-dialog",
     "rootDir": ".",
     "sourceMap": true,
     "inlineSources": true,
@@ -20,7 +20,7 @@
     "types": [],
     "baseUrl": ".",
     "paths": {
-      "ngx-confirm-dialog": ["../dist/packages/ngx-confirm-dialog"]
+      "ngx-quick-dialog": ["../dist/packages/ngx-quick-dialog"]
     },
     "typeRoots": [
       "./node_modules/@types/"
@@ -33,7 +33,7 @@
     "annotateForClosureCompiler": true,
     "strictMetadataEmit": true,
     "flatModuleOutFile": "index.js",
-    "flatModuleId": "ngx-confirm-dialog",
+    "flatModuleId": "ngx-quick-dialog",
     "skipTemplateCodegen": true
   }
 }

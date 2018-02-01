@@ -1,6 +1,6 @@
 import { AppPage } from './app.po';
 
-describe('ngx-confirm-dialog App', () => {
+describe('ngx-quick-dialog App', () => {
   let page: AppPage;
 
   beforeEach(() => {
