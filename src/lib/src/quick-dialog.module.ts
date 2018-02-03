@@ -1,6 +1,6 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { QuickDialogComponent } from './quick-dialog.component';
+import { NgxQuickDialogComponent } from './quick-dialog.component';
 import { NgxQuickDialogService } from './quick-dialog.service';
 
 @NgModule({
@@ -8,10 +8,13 @@ import { NgxQuickDialogService } from './quick-dialog.service';
     CommonModule
   ],
   declarations: [
-    QuickDialogComponent
+    NgxQuickDialogComponent
   ],
   exports: [
-    QuickDialogComponent
+    NgxQuickDialogComponent
+  ],
+  entryComponents: [
+    NgxQuickDialogComponent
   ]
 })
 export class NgxQuickDialogModule {

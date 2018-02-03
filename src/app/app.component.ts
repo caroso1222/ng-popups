@@ -12,6 +12,6 @@ export class AppComponent {
   constructor(private dialog: NgxQuickDialogService) {}
 
   open() {
-    this.dialog.confirm('Sure you want to continue?');
+    this.dialog.alert('Sure you want to continue?');
   }
 }

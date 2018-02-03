@@ -1,3 +1,77 @@
-h1 {
-  color: blue;
+$df-modal-large-size: 800px;
+
+.ngx-quick-dialog {
+  position: fixed;
+  z-index: 9999;
+  top: 0;
+  width: 100vw;
+  left: 0;
+  height: 100vh;
+  text-align: center;
+  white-space: nowrap;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+
+  &::before {
+    content: '';
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+  }
+
+  &__backdrop {
+    position: absolute;
+    z-index: 10;
+    top: 0;
+    width: 100%;
+    left: 0;
+    height: 100%;
+    background: rgba(5, 6, 19, .64);
+
+    &--hidden {
+      background: transparent;
+    }
+  }
+
+  &__content {
+    width: 489px;
+    background: #fff;
+    box-shadow: 0 2px 34px rgba(#000, .7);
+    border-radius: 3px;
+    overflow: hidden;
+    z-index: 20;
+    position: relative;
+    height: 100px;
+    animation-name: ngx-quick-dialog-fade-in-up;
+    animation-fill-mode: forwards;
+    animation-duration: 0.5s;
+    animation-timing-function: cubic-bezier(0.785, 0.135, 0.15, 0.86);
+    &--closing {
+      animation-name: ngx-quick-dialog-fade-out-down;
+      animation-timing-function: ease-out;
+    }
+  }
+}
+
+@keyframes ngx-quick-dialog-fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(11px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes ngx-quick-dialog-fade-out-down {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(17px);
+  }
 }

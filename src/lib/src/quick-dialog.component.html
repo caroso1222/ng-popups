@@ -1,1 +1,12 @@
-<h1>QuickDialog Component</h1>
+<div class="ngx-quick-dialog__backdrop"
+     (click)="onBackdropClick()"
+     [@fadeInOut]></div>
+<div class="ngx-quick-dialog__content"
+     [class.ngx-quick-dialog__content--closing]="closing">
+  <div class="ngx-quick-dialog__template"
+       dfModalTemplate
+       (keyup.esc)="escKey()"
+       tabindex="0">
+       {{ closing }}
+      </div>
+</div>

@@ -1,3 +1,4 @@
+import { NgxQuickDialogType } from './quick-dialog-type';
 import { NgxQuickDialogComponent } from './quick-dialog.component';
 import {
   Injectable,
@@ -39,26 +40,27 @@ export class NgxQuickDialogService {
   }
 
   alert(message: string) {
-
+    this.createQuickDialogComponent(NgxQuickDialogType.Alert, message);
   }
 
   confirm(message: string) {
-
+    this.createQuickDialogComponent(NgxQuickDialogType.Confirm, message);
   }
 
   prompt(prompt: string, defaultText?: string) {
-
+    this.createQuickDialogComponent(NgxQuickDialogType.Prompt, prompt, defaultText);
   }
 
-  private createQuickDialogComponent(): NgxQuickDialogComponent {
-    // Attach the Portal to the PortalHost.
+  private createQuickDialogComponent(type: NgxQuickDialogType, message: string, defaultText?: string): NgxQuickDialogComponent {
     const componentRef = this.bodyPortalHost.attachComponentPortal(this.quickDialogPortal);
     const quickDialog = componentRef.instance as NgxQuickDialogComponent;
-    // quickDialog.create(options);
-    // this.onCloseSubscriber = quickDialog.onClose
-    //   .subscribe(() => {
-    //     this.removeAlert();
-    //   });
+    quickDialog.type = type;
+    quickDialog.message = message;
+    quickDialog.defaultText = defaultText;
+    const subscription = quickDialog.$close.subscribe(() => {
+      this.bodyPortalHost.detach();
+      subscription.unsubscribe();
+    });
     return quickDialog;
   }
 }
