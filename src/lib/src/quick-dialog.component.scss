@@ -8,7 +8,6 @@ $df-modal-large-size: 800px;
   left: 0;
   height: 100vh;
   text-align: center;
-  white-space: nowrap;
   align-items: center;
   display: flex;
   justify-content: center;
@@ -35,14 +34,14 @@ $df-modal-large-size: 800px;
   }
 
   &__content {
-    width: 489px;
+    width: 425px;
     background: #fff;
-    box-shadow: 0 2px 34px rgba(#000, .7);
-    border-radius: 3px;
+    box-shadow: 0 3px 13px rgba(#000, .5);
+    border-radius: 2px;
     overflow: hidden;
     z-index: 20;
     position: relative;
-    height: 100px;
+    padding: 21px;
     animation-name: ngx-quick-dialog-fade-in-up;
     animation-fill-mode: forwards;
     animation-duration: 0.5s;
@@ -51,6 +50,52 @@ $df-modal-large-size: 800px;
       animation-name: ngx-quick-dialog-fade-out-down;
       animation-timing-function: ease-out;
     }
+  }
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 18px;
+    align-items: center;
+  }
+
+  &__title {
+    margin: 0;
+    font-size: 1.14em;
+    font-weight: 600;
+  }
+
+  &__divider {
+    border-top: 1px solid #EDEDED;
+    border-bottom: none;
+    margin-bottom: 16px;
+  }
+
+  &__text {
+    margin-top: 0;
+    text-align: left;
+    line-height: 1.6em;
+  }
+
+  &__footer {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  &__ok-btn {
+    height: 36px;
+    padding: 0 44px;
+    border: none;
+    background: #5E5BEC;
+    border-radius: 2px;
+    color: white;
+    font-weight: 600;
+    font-size: 1em;
+  }
+
+  &__close-btn {
+    border: none;
+    background: none;
   }
 }
 

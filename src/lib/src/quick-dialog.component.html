@@ -3,10 +3,21 @@
      [@fadeInOut]></div>
 <div class="ngx-quick-dialog__content"
      [class.ngx-quick-dialog__content--closing]="closing">
-  <div class="ngx-quick-dialog__template"
-       dfModalTemplate
-       (keyup.esc)="escKey()"
-       tabindex="0">
-       {{ closing }}
+      <div class="ngx-quick-dialog__header">
+        <h3 class="ngx-quick-dialog__title">Wait not so fast...</h3>
+        <button class="ngx-quick-dialog__close-btn"
+                (click)="onCloseBtnClick()">
+          <span class="ngx-quick-dialog__close-symbol"></span>
+        </button>
+      </div>
+      <hr class="ngx-quick-dialog__divider">
+      <p class="ngx-quick-dialog__text">
+        You can’t actually do that. Names can only be edited by administrators.
+      </p>
+      <div class="ngx-quick-dialog__footer">
+        <button class="ngx-quick-dialog__ok-btn ngx-quick-dialog-main-color"
+                (click)="onOkBtnClick()">
+          OK
+        </button>
       </div>
 </div>

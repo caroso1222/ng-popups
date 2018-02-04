@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NgxQuickDialogService } from '../lib';
 
 @Component({
@@ -6,10 +6,16 @@ import { NgxQuickDialogService } from '../lib';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'app';
 
   constructor(private dialog: NgxQuickDialogService) {}
+
+  ngOnInit() {
+    requestAnimationFrame(() => {
+      this.open();
+    });
+  }
 
   open() {
     this.dialog.alert('Sure you want to continue?');
