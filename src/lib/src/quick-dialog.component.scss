@@ -83,15 +83,31 @@ $df-modal-large-size: 800px;
     justify-content: flex-end;
   }
 
-  &__ok-btn {
+  &__cancel-btn, &__ok-btn {
     height: 36px;
-    padding: 0 44px;
-    border: none;
-    background: #5E5BEC;
+    padding: 0 24px;
     border-radius: 2px;
-    color: white;
     font-weight: 600;
     font-size: 1em;
+  }
+
+  &__cancel-btn {
+    border: 1px solid #5E5BEC;
+    color: #5E5BEC;
+    &:hover {
+      background: #fafafa;
+    }
+  }
+
+  &__ok-btn {
+    border: none;
+    background: #5E5BEC;
+    color: white;
+    margin-left: 16px;
+    min-width: 100px;
+    &:hover {
+      opacity: 0.93;
+    }
   }
 
   &__close-btn {

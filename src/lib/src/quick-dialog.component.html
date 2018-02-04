@@ -15,7 +15,11 @@
         You can’t actually do that. Names can only be edited by administrators.
       </p>
       <div class="ngx-quick-dialog__footer">
-        <button class="ngx-quick-dialog__ok-btn ngx-quick-dialog-main-color"
+        <button class="ngx-quick-dialog__cancel-btn"
+                (click)="onCancelBtnClick()">
+          Cancel
+        </button>
+        <button class="ngx-quick-dialog__ok-btn"
                 (click)="onOkBtnClick()">
           OK
         </button>

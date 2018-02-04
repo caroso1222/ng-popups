@@ -60,6 +60,10 @@ export class NgxQuickDialogComponent implements OnInit {
     this.close();
   }
 
+  onCancelBtnClick() {
+    this.close();
+  }
+
   onBackdropClick() {
     this.close();
   }
