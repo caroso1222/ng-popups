@@ -75,6 +75,7 @@ $df-modal-large-size: 800px;
     margin-top: 0;
     text-align: left;
     line-height: 1.6em;
+    margin-bottom: 16px;
   }
 
   &__footer {
@@ -96,6 +97,31 @@ $df-modal-large-size: 800px;
   &__close-btn {
     border: none;
     background: none;
+    padding: 0;
+  }
+
+  &__close-symbol {
+    height: 12px;
+    width: 12px;
+    position: relative;
+    display: block;
+    &:after, &:before {
+      content: "";
+      height: 2px;
+      width: 100%;
+      border-radius: 2px;
+      background: #D9D9D9;
+      position: absolute;
+      top: calc(50% - 1px);
+      left: 0;
+    }
+    &:after {
+      transform: rotate(45deg);
+    }
+    &:before {
+      transform: rotate(-45deg);
+    }
+
   }
 }
 
