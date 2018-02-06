@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NgxQuickDialogService } from '../lib';
+import { NgxQuickDialogService, NgxQuickDialogType } from '../lib';
 
 @Component({
   selector: 'app-root',
@@ -13,11 +13,17 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     requestAnimationFrame(() => {
-      this.open();
+      this.open(NgxQuickDialogType.Confirm);
     });
   }
 
-  open() {
-    this.dialog.alert('Sure you want to continue?');
+  open(type: NgxQuickDialogType) {
+    if (type === NgxQuickDialogType.Alert) {
+      this.dialog.alert('Sure you want to continue?');
+    } else if (type === NgxQuickDialogType.Prompt) {
+      this.dialog.prompt('Please write your name');
+    } else {
+      this.dialog.confirm('You sure?');
+    }
   }
 }

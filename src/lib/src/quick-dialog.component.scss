@@ -127,6 +127,14 @@ $df-modal-large-size: 800px;
     padding: 0;
   }
 
+  &--material-theme {
+    @import './themes/material';
+  }
+
+  &--dark-theme {
+    @import './themes/dark';
+  }
+
   &__close-symbol {
     height: 12px;
     width: 12px;
@@ -148,7 +156,6 @@ $df-modal-large-size: 800px;
     &:before {
       transform: rotate(-45deg);
     }
-
   }
 }
 

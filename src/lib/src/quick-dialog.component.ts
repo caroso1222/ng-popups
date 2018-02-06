@@ -1,3 +1,4 @@
+import { NgxQuickDialogTheme } from './quick-dialog-theme';
 import { fadeInOut } from './quick-dialog.animation';
 import { NgxQuickDialogType } from './quick-dialog-type';
 import {
@@ -23,6 +24,8 @@ export class NgxQuickDialogComponent implements OnInit {
 
   type: NgxQuickDialogType;
 
+  types = NgxQuickDialogType;
+
   message: string;
 
   closing = false;
@@ -34,11 +37,18 @@ export class NgxQuickDialogComponent implements OnInit {
   @HostBinding('@fadeInOut')
   animation = true;
 
+  theme: NgxQuickDialogTheme = 'default';
+
+  @HostBinding('class')
+  themeClass: string;
+
   @HostBinding('class.ngx-quick-dialog')
   setHostClass = true;
 
   ngOnInit() {
     this.elWithFocus = document.activeElement as HTMLElement;
+    this.themeClass = `ngx-quick-dialog--${this.theme}-theme`;
+
   }
 
   escKey() {

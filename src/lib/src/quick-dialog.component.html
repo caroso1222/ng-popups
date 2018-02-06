@@ -6,6 +6,7 @@
       <div class="ngx-quick-dialog__header">
         <h3 class="ngx-quick-dialog__title">Wait not so fast...</h3>
         <button class="ngx-quick-dialog__close-btn"
+                *ngIf="theme !== 'material'"
                 (click)="onCloseBtnClick()">
           <span class="ngx-quick-dialog__close-symbol"></span>
         </button>
@@ -14,10 +15,12 @@
       <p class="ngx-quick-dialog__text">
         You can’t actually do that. Names can only be edited by administrators.
       </p>
-      <input type="text"
+      <input *ngIf="type === types.Prompt"
+             type="text"
              class="ngx-quick-dialog__input">
       <div class="ngx-quick-dialog__footer">
-        <button class="ngx-quick-dialog__cancel-btn"
+        <button *ngIf="type === types.Confirm || type === types.Prompt"
+                class="ngx-quick-dialog__cancel-btn"
                 (click)="onCancelBtnClick()">
           Cancel
         </button>
