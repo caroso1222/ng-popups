@@ -52,6 +52,17 @@ $df-modal-large-size: 800px;
     }
   }
 
+  &__input {
+    display: block;
+    width: 100%;
+    margin-bottom: 20px;
+    height: 38px;
+    border-radius: 2px;
+    border: 1px solid #D6D6D6;
+    font-size: 1em;
+    padding: 0 10px;
+  }
+
   &__header {
     display: flex;
     justify-content: space-between;
