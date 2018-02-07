@@ -4,6 +4,19 @@
       display: none;
     }
 
+    &__title {
+      font-size: 1.42em;
+      font-weight: 700;
+    }
+
+    &__content {
+      padding-bottom: 15px;
+    }
+
+    &__header {
+      margin-bottom: 12px;
+    }
+
     &__ok-btn {
       min-width: inherit;
       background: none;
@@ -26,11 +39,15 @@
 
     &__text {
       font-size: 1.14em;
+      margin-bottom: 12px;
     }
 
-    &__title {
-      font-size: 1.42em;
-      font-weight: 700;
+    &__input {
+      border-radius: 0;
+      border: none;
+      border-bottom: 1px solid #979797;
+      padding-left: 0;
+      font-size: 1.14em;
     }
   }
 }
