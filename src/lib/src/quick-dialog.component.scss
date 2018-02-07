@@ -80,6 +80,8 @@ $df-modal-large-size: 800px;
     border-top: 1px solid #EDEDED;
     border-bottom: none;
     margin-bottom: 16px;
+    border-right: none;
+    border-left: none;
   }
 
   &__text {
@@ -127,14 +129,6 @@ $df-modal-large-size: 800px;
     padding: 0;
   }
 
-  &--material-theme {
-    @import './themes/material';
-  }
-
-  &--dark-theme {
-    @import './themes/dark';
-  }
-
   &__close-symbol {
     height: 12px;
     width: 12px;
@@ -156,6 +150,10 @@ $df-modal-large-size: 800px;
     &:before {
       transform: rotate(-45deg);
     }
+  }
+
+  &--dark-theme {
+    @import './themes/dark';
   }
 }
 
@@ -180,3 +178,14 @@ $df-modal-large-size: 800px;
     transform: translateY(17px);
   }
 }
+
+@import './themes/material';
+@import './themes/dark';
+
+// .ngx-quick-dialog {
+//   &--material-theme & {
+//     &__header {
+//       background: orange;
+//     }
+//   }
+// }

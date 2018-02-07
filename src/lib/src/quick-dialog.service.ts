@@ -57,7 +57,7 @@ export class NgxQuickDialogService {
     quickDialog.type = type;
     quickDialog.message = message;
     quickDialog.defaultText = defaultText;
-    quickDialog.theme = 'material';
+    quickDialog.theme = 'dark';
     const subscription = quickDialog.$close.subscribe(() => {
       this.bodyPortalHost.detach();
       subscription.unsubscribe();

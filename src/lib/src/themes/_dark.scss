@@ -1,0 +1,34 @@
+.ngx-quick-dialog {
+  &--dark-theme & {
+    &__divider {
+      border-top-color: #424346;
+    }
+
+    &__content {
+      background: #323337;
+    }
+
+    &__title {
+      color: white;
+      font-weight: 700;
+    }
+
+    &__text {
+      color: white;
+      font-weight: 600;
+    }
+
+    &__cancel-btn {
+      background: none;
+      color: white;
+      &:hover {
+        background: rgba(#fff, 0.03);
+      }
+    }
+
+    &__input {
+      background: none;
+      color: white;
+    }
+  }
+}

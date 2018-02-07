@@ -1,34 +1,36 @@
 .ngx-quick-dialog {
-  &__divider {
-    display: none;
-  }
-
-  &__ok-btn {
-    min-width: inherit;
-    background: none;
-    color: #5E5BEC;
-    margin-left: 0;
-    &:hover {
-      background: #fafafa;
+  &--material-theme & {
+    &__divider {
+      display: none;
     }
-  }
 
-  &__cancel-btn {
-    border: none;
-  }
+    &__ok-btn {
+      min-width: inherit;
+      background: none;
+      color: #5E5BEC;
+      margin-left: 0;
+      &:hover {
+        background: #fafafa;
+      }
+    }
 
-  &__ok-btn, &__cancel-btn {
-    padding: 0 16px;
-    font-weight: 700;
-    text-transform: uppercase;
-  }
+    &__cancel-btn {
+      border: none;
+    }
 
-  &__text {
-    font-size: 1.14em;
-  }
+    &__ok-btn, &__cancel-btn {
+      padding: 0 16px;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
 
-  &__title {
-    font-size: 1.42em;
-    font-weight: 700;
+    &__text {
+      font-size: 1.14em;
+    }
+
+    &__title {
+      font-size: 1.42em;
+      font-weight: 700;
+    }
   }
 }
