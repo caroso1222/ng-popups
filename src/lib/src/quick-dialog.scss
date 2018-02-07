@@ -12,13 +12,6 @@ $df-modal-large-size: 800px;
   display: flex;
   justify-content: center;
 
-  &::before {
-    content: '';
-    display: inline-block;
-    height: 100%;
-    vertical-align: middle;
-  }
-
   &__backdrop {
     position: absolute;
     z-index: 10;

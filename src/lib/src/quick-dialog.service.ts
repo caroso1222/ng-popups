@@ -1,5 +1,5 @@
 import { NgxQuickDialogType } from './quick-dialog-type';
-import { NgxQuickDialogComponent } from './quick-dialog.component';
+import { NgxQuickDialog } from './quick-dialog';
 import {
   Injectable,
   ApplicationRef,
@@ -15,7 +15,7 @@ export class NgxQuickDialogService {
    * Reference to Portal.
    * This is the portal we'll use to attach our NgxQuickDialog component.
    */
-  private quickDialogPortal: ComponentPortal<NgxQuickDialogComponent>;
+  private quickDialogPortal: ComponentPortal<NgxQuickDialog>;
 
   /**
    * Reference to Portal Host.
@@ -29,7 +29,7 @@ export class NgxQuickDialogService {
     private injector: Injector
   ) {
     // Create a Portal based on the NgxQuickDialog component
-    this.quickDialogPortal = new ComponentPortal(NgxQuickDialogComponent);
+    this.quickDialogPortal = new ComponentPortal(NgxQuickDialog);
 
     // Create a PortalHost anchored in document.body
     this.bodyPortalHost = new DomPortalHost(
@@ -51,13 +51,15 @@ export class NgxQuickDialogService {
     this.createQuickDialogComponent(NgxQuickDialogType.Prompt, prompt, defaultText);
   }
 
-  private createQuickDialogComponent(type: NgxQuickDialogType, message: string, defaultText?: string): NgxQuickDialogComponent {
+  private createQuickDialogComponent(type: NgxQuickDialogType, message: string, defaultText?: string): NgxQuickDialog {
     const componentRef = this.bodyPortalHost.attachComponentPortal(this.quickDialogPortal);
-    const quickDialog = componentRef.instance as NgxQuickDialogComponent;
+    const quickDialog = componentRef.instance as NgxQuickDialog;
     quickDialog.type = type;
     quickDialog.message = message;
     quickDialog.defaultText = defaultText;
-    quickDialog.theme = 'material';
+    quickDialog.localConfig = {
+      // color: 'sdf'
+    };
     const subscription = quickDialog.$close.subscribe(() => {
       this.bodyPortalHost.detach();
       subscription.unsubscribe();

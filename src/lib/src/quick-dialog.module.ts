@@ -1,27 +1,35 @@
+import { NGX_QUICK_DIALOG_CONFIG } from './quick-dialog.config';
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { NgxQuickDialogComponent } from './quick-dialog.component';
+import { NgxQuickDialog } from './quick-dialog';
 import { NgxQuickDialogService } from './quick-dialog.service';
+import { NgxQuickDialogOptions } from './quick-dialog-options';
 
 @NgModule({
   imports: [
     CommonModule
   ],
   declarations: [
-    NgxQuickDialogComponent
+    NgxQuickDialog
   ],
   exports: [
-    NgxQuickDialogComponent
+    NgxQuickDialog
   ],
   entryComponents: [
-    NgxQuickDialogComponent
+    NgxQuickDialog
   ]
 })
 export class NgxQuickDialogModule {
-  static forRoot(): ModuleWithProviders {
+  static forRoot(globalOptions?: NgxQuickDialogOptions): ModuleWithProviders {
     return {
       ngModule: NgxQuickDialogModule,
-      providers: [NgxQuickDialogService]
+      providers: [
+        NgxQuickDialogService,
+        {
+          provide: NGX_QUICK_DIALOG_CONFIG,
+          useValue: globalOptions
+        }
+      ]
     };
   }
 }

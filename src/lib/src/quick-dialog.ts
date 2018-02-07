@@ -1,3 +1,4 @@
+import { NgxQuickDialogOptions } from './quick-dialog-options';
 import { NgxQuickDialogTheme } from './quick-dialog-theme';
 import { fadeInOut } from './quick-dialog.animation';
 import { NgxQuickDialogType } from './quick-dialog-type';
@@ -5,18 +6,21 @@ import {
   Component,
   HostBinding,
   ViewEncapsulation,
-  OnInit
+  OnInit,
+  Optional,
+  Inject,
 } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
+import { NGX_QUICK_DIALOG_CONFIG } from './quick-dialog.config';
 
 @Component({
   selector: 'ngx-quick-dialog',
-  templateUrl: './quick-dialog.component.html',
-  styleUrls: ['./quick-dialog.component.scss'],
+  templateUrl: './quick-dialog.html',
+  styleUrls: ['./quick-dialog.scss'],
   animations: [fadeInOut],
   encapsulation: ViewEncapsulation.None
 })
-export class NgxQuickDialogComponent implements OnInit {
+export class NgxQuickDialog implements OnInit {
 
   private closeSubject: Subject<any> = new Subject();
 
@@ -45,10 +49,23 @@ export class NgxQuickDialogComponent implements OnInit {
   @HostBinding('class.ngx-quick-dialog')
   setHostClass = true;
 
+  localConfig: NgxQuickDialogOptions;
+
+  private _config: NgxQuickDialogOptions;
+
+  get config(): NgxQuickDialogOptions {
+    return this._config;
+  }
+
+  constructor(@Optional()
+              @Inject(NGX_QUICK_DIALOG_CONFIG)
+              private globalConfig: NgxQuickDialogOptions) {}
+
   ngOnInit() {
     this.elWithFocus = document.activeElement as HTMLElement;
     this.themeClass = `ngx-quick-dialog--${this.theme}-theme`;
-
+    const defaultConfig = new NgxQuickDialogOptions();
+    this._config = Object.assign({}, defaultConfig, this.globalConfig, this.localConfig);
   }
 
   escKey() {

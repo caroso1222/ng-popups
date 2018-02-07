@@ -9,18 +9,18 @@
     }
 
     &__title {
-      color: white;
+      color: #fff;
       font-weight: 700;
     }
 
     &__text {
-      color: white;
+      color: #fff;
       font-weight: 600;
     }
 
     &__cancel-btn {
       background: none;
-      color: white;
+      color: #fff;
       &:hover {
         background: rgba(#fff, 0.03);
       }
@@ -28,7 +28,7 @@
 
     &__input {
       background: none;
-      color: white;
+      color: #fff;
     }
   }
 }
