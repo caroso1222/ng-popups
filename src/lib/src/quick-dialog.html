@@ -4,7 +4,25 @@
 <div class="ngx-quick-dialog__content"
      [class.ngx-quick-dialog__content--closing]="closing">
       <div class="ngx-quick-dialog__header">
-        <h3 class="ngx-quick-dialog__title">Wait not so fast...</h3>
+        <h3 class="ngx-quick-dialog__title">
+          <ng-container *ngIf="config.title; else anotherTitle">
+            {{ getTitle() }}
+          </ng-container>
+          <ng-template #anotherTitle>
+            <ng-container *ngIf="type === types.Alert"
+                          i18n>
+              Alert
+            </ng-container>
+            <ng-container *ngIf="type === types.Confirm"
+                          i18n>
+              Confirm
+            </ng-container>
+            <ng-container *ngIf="type === types.Prompt"
+                          i18n>
+              Prompt
+            </ng-container>
+          </ng-template>
+        </h3>
         <button class="ngx-quick-dialog__close-btn"
                 *ngIf="theme !== 'material'"
                 (click)="onCloseBtnClick()">

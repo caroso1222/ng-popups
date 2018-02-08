@@ -3,7 +3,7 @@ import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NgxQuickDialog } from './quick-dialog';
 import { NgxQuickDialogService } from './quick-dialog.service';
-import { NgxQuickDialogOptions } from './quick-dialog-options';
+import { NgxQuickDialogGlobalConfig } from './quick-dialog.config';
 
 @NgModule({
   imports: [
@@ -20,14 +20,14 @@ import { NgxQuickDialogOptions } from './quick-dialog-options';
   ]
 })
 export class NgxQuickDialogModule {
-  static forRoot(globalOptions?: NgxQuickDialogOptions): ModuleWithProviders {
+  static forRoot(globalConfig?: NgxQuickDialogGlobalConfig): ModuleWithProviders {
     return {
       ngModule: NgxQuickDialogModule,
       providers: [
         NgxQuickDialogService,
         {
           provide: NGX_QUICK_DIALOG_CONFIG,
-          useValue: globalOptions
+          useValue: globalConfig
         }
       ]
     };

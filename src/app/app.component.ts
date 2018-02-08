@@ -13,13 +13,15 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     requestAnimationFrame(() => {
-      this.open(NgxQuickDialogType.Confirm);
+      this.open(NgxQuickDialogType.Alert);
     });
   }
 
   open(type: NgxQuickDialogType) {
     if (type === NgxQuickDialogType.Alert) {
-      this.dialog.alert('Sure you want to continue?');
+      this.dialog.alert('Sure you want to continue?', {
+        title: 'Wait not so fast…'
+      });
     } else if (type === NgxQuickDialogType.Prompt) {
       this.dialog.prompt('Please write your name');
     } else {

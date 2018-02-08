@@ -1,4 +1,9 @@
-import { NgxQuickDialogOptions } from './quick-dialog-options';
+import {
+  NgxQuickDialogLocalConfig,
+  NgxQuickDialogCompleteConfig,
+  NgxQuickDialogGlobalConfig,
+  NgxQuickDialogBaseConfig
+} from './quick-dialog.config';
 import { NgxQuickDialogTheme } from './quick-dialog-theme';
 import { fadeInOut } from './quick-dialog.animation';
 import { NgxQuickDialogType } from './quick-dialog-type';
@@ -49,22 +54,22 @@ export class NgxQuickDialog implements OnInit {
   @HostBinding('class.ngx-quick-dialog')
   setHostClass = true;
 
-  localConfig: NgxQuickDialogOptions;
+  localConfig: NgxQuickDialogLocalConfig;
 
-  private _config: NgxQuickDialogOptions;
+  private _config: NgxQuickDialogCompleteConfig;
 
-  get config(): NgxQuickDialogOptions {
+  get config(): NgxQuickDialogCompleteConfig {
     return this._config;
   }
 
   constructor(@Optional()
               @Inject(NGX_QUICK_DIALOG_CONFIG)
-              private globalConfig: NgxQuickDialogOptions) {}
+              private globalConfig: NgxQuickDialogGlobalConfig) {}
 
   ngOnInit() {
     this.elWithFocus = document.activeElement as HTMLElement;
     this.themeClass = `ngx-quick-dialog--${this.theme}-theme`;
-    const defaultConfig = new NgxQuickDialogOptions();
+    const defaultConfig = new NgxQuickDialogBaseConfig();
     this._config = Object.assign({}, defaultConfig, this.globalConfig, this.localConfig);
   }
 
@@ -93,5 +98,27 @@ export class NgxQuickDialog implements OnInit {
 
   onBackdropClick() {
     this.close();
+  }
+
+  getTitle() {
+    // if a generic title exists, then use that
+    let title = this.config.title;
+    console.log({title});
+    if (title) {
+      return title;
+    }
+
+    // if no title was passed on `open()`, then search
+    // through the titles set via global configs
+    const titles = this.config.titles || {};
+    if (this.type === NgxQuickDialogType.Alert) {
+      title = titles.alert;
+    } else if (this.type === NgxQuickDialogType.Confirm) {
+      title = titles.confirm;
+    } else {
+      title = titles.prompt;
+    }
+    console.log(title);
+    return title;
   }
 }

@@ -14,7 +14,11 @@ import { NgxQuickDialogModule } from '../lib';
   imports: [
     BrowserAnimationsModule,
     BrowserModule,
-    NgxQuickDialogModule.forRoot(),
+    NgxQuickDialogModule.forRoot({
+      titles: {
+        confirm: 'You better double check dat'
+      }
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent]
