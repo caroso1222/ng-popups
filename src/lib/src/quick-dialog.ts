@@ -14,6 +14,7 @@ import {
   OnInit,
   Optional,
   Inject,
+  ChangeDetectionStrategy
 } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
 import { NGX_QUICK_DIALOG_CONFIG } from './quick-dialog.config';
@@ -23,7 +24,8 @@ import { NGX_QUICK_DIALOG_CONFIG } from './quick-dialog.config';
   templateUrl: './quick-dialog.html',
   styleUrls: ['./quick-dialog.scss'],
   animations: [fadeInOut],
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NgxQuickDialog implements OnInit {
 
@@ -103,7 +105,6 @@ export class NgxQuickDialog implements OnInit {
   getTitle() {
     // if a generic title exists, then use that
     let title = this.config.title;
-    console.log({title});
     if (title) {
       return title;
     }
@@ -118,7 +119,7 @@ export class NgxQuickDialog implements OnInit {
     } else {
       title = titles.prompt;
     }
-    console.log(title);
+    console.log({title});
     return title;
   }
 }

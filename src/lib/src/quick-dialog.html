@@ -5,7 +5,7 @@
      [class.ngx-quick-dialog__content--closing]="closing">
       <div class="ngx-quick-dialog__header">
         <h3 class="ngx-quick-dialog__title">
-          <ng-container *ngIf="config.title; else anotherTitle">
+          <ng-container *ngIf="getTitle(); else anotherTitle">
             {{ getTitle() }}
           </ng-container>
           <ng-template #anotherTitle>
