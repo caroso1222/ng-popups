@@ -34,7 +34,7 @@ $df-modal-large-size: 800px;
     overflow: hidden;
     z-index: 20;
     position: relative;
-    padding: 21px;
+    padding: 19px 21px;
     animation-name: ngx-quick-dialog-fade-in-up;
     animation-fill-mode: forwards;
     animation-duration: 0.5s;
@@ -72,7 +72,7 @@ $df-modal-large-size: 800px;
   &__divider {
     border-top: 1px solid #EDEDED;
     border-bottom: none;
-    margin-bottom: 16px;
+    margin-bottom: 14px;
     border-right: none;
     border-left: none;
   }

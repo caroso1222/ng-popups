@@ -17,7 +17,8 @@ import { NgxQuickDialogModule } from '../lib';
     NgxQuickDialogModule.forRoot({
       titles: {
         confirm: 'You better double check dat'
-      }
+      },
+      cancelButtonText: 'Exit'
     }),
   ],
   providers: [],

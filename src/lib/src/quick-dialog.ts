@@ -48,8 +48,6 @@ export class NgxQuickDialog implements OnInit {
   @HostBinding('@fadeInOut')
   animation = true;
 
-  theme: NgxQuickDialogTheme = 'default';
-
   @HostBinding('class')
   themeClass: string;
 
@@ -64,15 +62,19 @@ export class NgxQuickDialog implements OnInit {
     return this._config;
   }
 
+  get theme(): NgxQuickDialogTheme {
+    return this.config.theme;
+  }
+
   constructor(@Optional()
               @Inject(NGX_QUICK_DIALOG_CONFIG)
               private globalConfig: NgxQuickDialogGlobalConfig) {}
 
   ngOnInit() {
     this.elWithFocus = document.activeElement as HTMLElement;
-    this.themeClass = `ngx-quick-dialog--${this.theme}-theme`;
     const defaultConfig = new NgxQuickDialogBaseConfig();
     this._config = Object.assign({}, defaultConfig, this.globalConfig, this.localConfig);
+    this.themeClass = `ngx-quick-dialog--${this.theme}-theme`;
   }
 
   escKey() {
@@ -119,7 +121,6 @@ export class NgxQuickDialog implements OnInit {
     } else {
       title = titles.prompt;
     }
-    console.log({title});
     return title;
   }
 }

@@ -4,14 +4,12 @@ import { NgxQuickDialogTheme } from './quick-dialog-theme';
 
 export class NgxQuickDialogBaseConfig {
   theme?: NgxQuickDialogTheme;
-  okBtnLabel?: string;
-  cancelBtnLabel?: string;
+  okButtonText?: string;
+  cancelButtonText?: string;
   mainColor?: string;
 
   constructor() {
     this.theme = 'default';
-    this.okBtnLabel = 'OK';
-    this.cancelBtnLabel = 'Cancel';
     this.mainColor = '#5E5BEC';
   }
 }

@@ -19,13 +19,21 @@ export class AppComponent implements OnInit {
 
   open(type: NgxQuickDialogType) {
     if (type === NgxQuickDialogType.Alert) {
-      this.dialog.alert('Sure you want to continue?', {
-        title: 'Wait not so fast…'
+      this.dialog.alert('You can’t actually do that. Names can only be edited by administrators.',
+      {
+        title: 'Wait not so fast…',
+        theme: 'material'
       });
-    } else if (type === NgxQuickDialogType.Prompt) {
-      this.dialog.prompt('Please write your name');
+    } else if (type === NgxQuickDialogType.Confirm) {
+      this.dialog.confirm(`Not my business, but, really, you’re about to make
+      an obscene huge mistake. Wanna continue tho?`);
     } else {
-      this.dialog.confirm('You sure?');
+      this.dialog.prompt(`Please type your email below. I will annoy you
+      every single day of your life with garbage emails you can’t care less about.`,
+      {
+        okButtonText: 'Sure, whatever',
+        theme: 'dark'
+      });
     }
   }
 }

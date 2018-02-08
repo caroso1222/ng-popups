@@ -18,7 +18,7 @@
               Confirm
             </ng-container>
             <ng-container *ngIf="type === types.Prompt"
-                          i18n="The defaultmtitle for Prompt dialogs@@ngxQuickDialogPrompt">
+                          i18n="The default title for Prompt dialogs@@ngxQuickDialogPrompt">
               Prompt
             </ng-container>
           </ng-template>
@@ -31,7 +31,7 @@
       </div>
       <hr class="ngx-quick-dialog__divider">
       <p class="ngx-quick-dialog__text">
-        You can’t actually do that. Names can only be edited by administrators.
+        {{ message }}
       </p>
       <input *ngIf="type === types.Prompt"
              type="text"
@@ -40,11 +40,23 @@
         <button *ngIf="type === types.Confirm || type === types.Prompt"
                 class="ngx-quick-dialog__cancel-btn"
                 (click)="onCancelBtnClick()">
-          Cancel
+          <ng-container *ngIf="!config.cancelButtonText; else customCancelLabel"
+            i18n="The default text in the Cancel btn@@ngxQuickDialogCancelButton">
+            Cancel
+          </ng-container>
+          <ng-template #customCancelLabel>
+            {{ config.cancelButtonText }}
+          </ng-template>
         </button>
         <button class="ngx-quick-dialog__ok-btn"
                 (click)="onOkBtnClick()">
-          OK
+          <ng-container *ngIf="!config.okButtonText; else customOkLabel"
+            i18n="The default text in the OK btn@@ngxQuickDialogOKButton">
+            OK
+          </ng-container>
+          <ng-template #customOkLabel>
+            {{ config.okButtonText }}
+          </ng-template>
         </button>
       </div>
 </div>
