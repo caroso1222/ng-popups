@@ -10,15 +10,15 @@
           </ng-container>
           <ng-template #anotherTitle>
             <ng-container *ngIf="type === types.Alert"
-                          i18n>
+                          i18n="The default title for Alert dialogs@@ngxQuickDialogAlert">
               Alert
             </ng-container>
             <ng-container *ngIf="type === types.Confirm"
-                          i18n>
+                          i18n="The default title for Confirm dialogs@@ngxQuickDialogConfirm">
               Confirm
             </ng-container>
             <ng-container *ngIf="type === types.Prompt"
-                          i18n>
+                          i18n="The defaultmtitle for Prompt dialogs@@ngxQuickDialogPrompt">
               Prompt
             </ng-container>
           </ng-template>
