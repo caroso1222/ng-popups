@@ -69,41 +69,81 @@ export class NgxQuickDialog implements OnInit, AfterViewInit, OnDestroy {
    */
   closing = false;
 
+  /**
+   * Whether or not to listen to 'enter' key
+   */
   canListenToEnter = false;
 
+  /**
+   * Element that is focused prior to modal opening
+   */
   private elWithFocus: HTMLElement;
 
+  /**
+   * Whether or not to enable host animation
+   */
   @HostBinding('@fadeInOut')
   animation = true;
 
+  /**
+   * Class to be applied according to the desired theme
+   */
   @HostBinding('class')
   themeClass: string;
 
+  /**
+   * Reference to the prompt text input
+   */
   @ViewChild('promptInput')
   promptInput: ElementRef;
 
+  /**
+   * Reference to the dialog content
+   */
   @ViewChild('dialogContent')
   dialogContent: ElementRef;
 
+  /**
+   * Whether or not to set the host class
+   */
   @HostBinding('class.ngx-quick-dialog')
   setHostClass = true;
 
+  /**
+   * The config passed by the user via service methods
+   */
   localConfig: NgxQuickDialogLocalConfig;
 
+  /**
+   * Mapped config that blends both local and global configs
+   */
   private _config: NgxQuickDialogCompleteConfig;
 
+  /**
+   * The current mapped config
+   */
   get config(): NgxQuickDialogCompleteConfig {
     return this._config;
   }
 
+  /**
+   * The current theme
+   */
   get theme(): NgxQuickDialogTheme {
     return this.config.theme;
   }
 
+  /**
+   * Initializes the component
+   * @param globalConfig - the configuration passed via .forRoot()
+   */
   constructor(@Optional()
               @Inject(NGX_QUICK_DIALOG_CONFIG)
               private globalConfig: NgxQuickDialogGlobalConfig) {}
 
+  /**
+   * Initializes the component with the theme and mapped configs
+   */
   ngOnInit() {
     this.elWithFocus = document.activeElement as HTMLElement;
     const defaultConfig = new NgxQuickDialogBaseConfig();
@@ -112,9 +152,15 @@ export class NgxQuickDialog implements OnInit, AfterViewInit, OnDestroy {
     this.dialogContent.nativeElement.focus();
   }
 
+  /**
+   * Called after Angular initializes the component's views
+   */
   ngAfterViewInit() {
     // set the focus to 'content' so that ESC can be listened right away
     this.dialogContent.nativeElement.focus();
+
+    // if the type is Prompt, then set the focus to the input and select
+    // the text, just as window.prompt does
     if (this.type === NgxQuickDialogType.Prompt) {
       const input = this.promptInput.nativeElement as HTMLInputElement;
       input.focus();
@@ -126,16 +172,30 @@ export class NgxQuickDialog implements OnInit, AfterViewInit, OnDestroy {
     }
   }
 
+  /**
+   * Listener for the 'esc' key
+   */
   escKey() {
     this.close();
   }
 
+  /**
+   * Listener for the 'enter' key. It needs a fake 'debounce' otherwise
+   * the dialog would close immediately after it's opened, if it
+   * was trigger via an 'enter' key prior to dialog opening.
+   */
   enterKey() {
     if (this.canListenToEnter) {
       this.close(true);
     }
   }
 
+  /**
+   * Closes the current dialog. Emits an event with the payload.
+   * The payload can either be a boolean, or an object if the type
+   * is Prompt.
+   * @param result - whether it was 'Cancel': false, or 'OK': true
+   */
   close(result = false) {
     this.closing = true;
     requestAnimationFrame(() => {
@@ -152,6 +212,9 @@ export class NgxQuickDialog implements OnInit, AfterViewInit, OnDestroy {
     });
   }
 
+  /**
+   * Listener for click events on the 'x' button
+   */
   onCloseBtnClick() {
     this.close();
   }
@@ -163,18 +226,30 @@ export class NgxQuickDialog implements OnInit, AfterViewInit, OnDestroy {
     this.canListenToEnter = true;
   }
 
+  /**
+   * Listener for click events on the 'OK' button
+   */
   onOkBtnClick() {
     this.close(true);
   }
 
+  /**
+   * Listener for click events on the 'Cancel' button
+   */
   onCancelBtnClick() {
     this.close();
   }
 
+  /**
+   * Listener for click events on the backdrop shadow
+   */
   onBackdropClick() {
     this.close();
   }
 
+  /**
+   * The dialog's title
+   */
   getTitle() {
     // if a generic title exists, then use that
     let title = this.config.title;
@@ -195,9 +270,11 @@ export class NgxQuickDialog implements OnInit, AfterViewInit, OnDestroy {
     return title;
   }
 
+  /**
+   * Component cleanup. return the focus to the element that was active
+   * prior to the quick dialog opening
+   */
   ngOnDestroy() {
-    // return the focus to the element that was active
-    // prior to the quick dialog opening
     const body = document.body;
     const elWithFocus = this.elWithFocus;
 

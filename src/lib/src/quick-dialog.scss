@@ -143,6 +143,11 @@ $df-modal-large-size: 800px;
     &:before {
       transform: rotate(-45deg);
     }
+    &:hover {
+      &:after, &:before {
+        background: #BDBDBD;
+      }
+    }
   }
 
   &--dark-theme {

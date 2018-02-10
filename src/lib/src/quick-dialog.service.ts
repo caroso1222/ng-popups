@@ -18,14 +18,12 @@ import { Observable } from 'rxjs/Observable';
 export class NgxQuickDialogService {
 
   /**
-   * Reference to Portal.
-   * This is the portal we'll use to attach our NgxQuickDialog component.
+   * Reference to the main Portal.
    */
   private quickDialogPortal: ComponentPortal<NgxQuickDialog>;
 
   /**
-   * Reference to Portal Host.
-   * We use DOMPortalHost as we'll be using document.body as our anchor.
+   * Reference to the main Portal Host.
    */
   private bodyPortalHost: DomPortalHost;
 
@@ -45,18 +43,39 @@ export class NgxQuickDialogService {
       this.injector);
   }
 
+  /**
+   * Creates an alert dialog
+   * @param message - text to render inside the dialog
+   * @param config - optional configuration object
+   */
   alert(message: string, config?: NgxQuickDialogLocalConfig): NgxQuickDialogResult {
     return this.createQuickDialogComponent(NgxQuickDialogType.Alert, message, config);
   }
 
+  /**
+   * Creates a confirm dialog
+   * @param message - text to render inside the dialog
+   * @param config - optional configuration object
+   */
   confirm(message: string, config?: NgxQuickDialogLocalConfig): NgxQuickDialogResult {
     return this.createQuickDialogComponent(NgxQuickDialogType.Confirm, message, config);
   }
 
+  /**
+   * Creates a prompt dialog
+   * @param message - text to render inside the dialog
+   * @param config - optional configuration object
+   */
   prompt(prompt: string, config?: NgxQuickDialogLocalConfig): NgxQuickDialogResult {
     return this.createQuickDialogComponent(NgxQuickDialogType.Prompt, prompt, config);
   }
 
+  /**
+   * Creates a dialog
+   * @param type - type of the dialog: alert, confirm or prompt
+   * @param message - main text to render inside the dialog
+   * @param config - optional configuration object
+   */
   private createQuickDialogComponent(
     type: NgxQuickDialogType,
     message: string,
