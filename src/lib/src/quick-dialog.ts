@@ -31,24 +31,45 @@ import { NGX_QUICK_DIALOG_CONFIG } from './quick-dialog.config';
   templateUrl: './quick-dialog.html',
   styleUrls: ['./quick-dialog.scss'],
   animations: [fadeInOut],
+  host: {
+    '(@fadeInOut.done)': 'animationDone()'
+  },
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NgxQuickDialog implements OnInit, AfterViewInit, OnDestroy {
 
+  /**
+   * Subject used to stream close events
+   */
   private closeSubject: Subject<boolean | NgxQuickDialogPromptResult> = new Subject();
 
+  /**
+   * Observable that emits on every close action
+   */
   $close = this.closeSubject.asObservable();
 
+  /**
+   * The type of the dialog
+   */
   type: NgxQuickDialogType;
 
+  /**
+   * List of all the available dialg types
+   */
   types = NgxQuickDialogType;
 
+  /**
+   * Main text to render inside the dialog
+   */
   message: string;
 
+  /**
+   * Whether or not the dialog is closing
+   */
   closing = false;
 
-  defaultText = '';
+  canListenToEnter = false;
 
   private elWithFocus: HTMLElement;
 
@@ -95,7 +116,13 @@ export class NgxQuickDialog implements OnInit, AfterViewInit, OnDestroy {
     // set the focus to 'content' so that ESC can be listened right away
     this.dialogContent.nativeElement.focus();
     if (this.type === NgxQuickDialogType.Prompt) {
-      this.promptInput.nativeElement.focus();
+      const input = this.promptInput.nativeElement as HTMLInputElement;
+      input.focus();
+      const defaultText = this.config.defaultText;
+      if (defaultText) {
+        input.value = defaultText;
+        input.setSelectionRange(0, defaultText.length);
+      }
     }
   }
 
@@ -104,7 +131,7 @@ export class NgxQuickDialog implements OnInit, AfterViewInit, OnDestroy {
   }
 
   enterKey() {
-    if (this.type === NgxQuickDialogType.Prompt) {
+    if (this.canListenToEnter) {
       this.close(true);
     }
   }
@@ -127,6 +154,13 @@ export class NgxQuickDialog implements OnInit, AfterViewInit, OnDestroy {
 
   onCloseBtnClick() {
     this.close();
+  }
+
+  /**
+   * Function called when the main host animation finishes
+   */
+  animationDone() {
+    this.canListenToEnter = true;
   }
 
   onOkBtnClick() {
