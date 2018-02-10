@@ -1,4 +1,8 @@
-import { NgxQuickDialogType } from './quick-dialog-type';
+import {
+  NgxQuickDialogType,
+  NgxQuickDialogResult,
+  NgxQuickDialogPromptResult
+} from './quick-dialog-types';
 import { NgxQuickDialog } from './quick-dialog';
 import {
   Injectable,
@@ -8,6 +12,7 @@ import {
 } from '@angular/core';
 import { ComponentPortal, DomPortalHost } from '@angular/cdk/portal';
 import { NgxQuickDialogLocalConfig } from './quick-dialog.config';
+import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class NgxQuickDialogService {
@@ -40,31 +45,34 @@ export class NgxQuickDialogService {
       this.injector);
   }
 
-  alert(message: string, config?: NgxQuickDialogLocalConfig) {
-    this.createQuickDialogComponent(NgxQuickDialogType.Alert, message, config);
+  alert(message: string, config?: NgxQuickDialogLocalConfig): NgxQuickDialogResult {
+    return this.createQuickDialogComponent(NgxQuickDialogType.Alert, message, config);
   }
 
-  confirm(message: string, config?: NgxQuickDialogLocalConfig) {
-    this.createQuickDialogComponent(NgxQuickDialogType.Confirm, message, config);
+  confirm(message: string, config?: NgxQuickDialogLocalConfig): NgxQuickDialogResult {
+    return this.createQuickDialogComponent(NgxQuickDialogType.Confirm, message, config);
   }
 
-  prompt(prompt: string, config?: NgxQuickDialogLocalConfig) {
-    this.createQuickDialogComponent(NgxQuickDialogType.Prompt, prompt, config);
+  prompt(prompt: string, config?: NgxQuickDialogLocalConfig): NgxQuickDialogResult {
+    return this.createQuickDialogComponent(NgxQuickDialogType.Prompt, prompt, config);
   }
 
   private createQuickDialogComponent(
     type: NgxQuickDialogType,
     message: string,
-    config?: NgxQuickDialogLocalConfig): NgxQuickDialog {
+    config?: NgxQuickDialogLocalConfig): NgxQuickDialogResult {
       const componentRef = this.bodyPortalHost.attachComponentPortal(this.quickDialogPortal);
       const quickDialog = componentRef.instance as NgxQuickDialog;
-      quickDialog.type = type;
       quickDialog.message = message;
       quickDialog.localConfig = config;
-      const subscription = quickDialog.$close.subscribe(() => {
-        this.bodyPortalHost.detach();
-        subscription.unsubscribe();
+      quickDialog.type = type;
+      return new Observable(observer => {
+        const subscription = quickDialog.$close
+          .subscribe((res: boolean | NgxQuickDialogPromptResult) => {
+            this.bodyPortalHost.detach();
+            subscription.unsubscribe();
+            observer.next(res);
+          });
       });
-      return quickDialog;
   }
 }

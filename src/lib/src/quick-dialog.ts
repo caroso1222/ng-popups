@@ -6,7 +6,10 @@ import {
 } from './quick-dialog.config';
 import { NgxQuickDialogTheme } from './quick-dialog-theme';
 import { fadeInOut } from './quick-dialog.animation';
-import { NgxQuickDialogType } from './quick-dialog-type';
+import {
+  NgxQuickDialogType,
+  NgxQuickDialogPromptResult
+} from './quick-dialog-types';
 import {
   Component,
   HostBinding,
@@ -14,7 +17,11 @@ import {
   OnInit,
   Optional,
   Inject,
-  ChangeDetectionStrategy
+  ChangeDetectionStrategy,
+  ViewChild,
+  ElementRef,
+  AfterViewInit,
+  OnDestroy
 } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
 import { NGX_QUICK_DIALOG_CONFIG } from './quick-dialog.config';
@@ -27,9 +34,9 @@ import { NGX_QUICK_DIALOG_CONFIG } from './quick-dialog.config';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class NgxQuickDialog implements OnInit {
+export class NgxQuickDialog implements OnInit, AfterViewInit, OnDestroy {
 
-  private closeSubject: Subject<any> = new Subject();
+  private closeSubject: Subject<boolean | NgxQuickDialogPromptResult> = new Subject();
 
   $close = this.closeSubject.asObservable();
 
@@ -50,6 +57,12 @@ export class NgxQuickDialog implements OnInit {
 
   @HostBinding('class')
   themeClass: string;
+
+  @ViewChild('promptInput')
+  promptInput: ElementRef;
+
+  @ViewChild('dialogContent')
+  dialogContent: ElementRef;
 
   @HostBinding('class.ngx-quick-dialog')
   setHostClass = true;
@@ -75,16 +88,40 @@ export class NgxQuickDialog implements OnInit {
     const defaultConfig = new NgxQuickDialogBaseConfig();
     this._config = Object.assign({}, defaultConfig, this.globalConfig, this.localConfig);
     this.themeClass = `ngx-quick-dialog--${this.theme}-theme`;
+    this.dialogContent.nativeElement.focus();
+  }
+
+  ngAfterViewInit() {
+    // set the focus to 'content' so that ESC can be listened right away
+    this.dialogContent.nativeElement.focus();
+    if (this.type === NgxQuickDialogType.Prompt) {
+      this.promptInput.nativeElement.focus();
+    }
   }
 
   escKey() {
     this.close();
   }
 
-  close() {
+  enterKey() {
+    if (this.type === NgxQuickDialogType.Prompt) {
+      this.close(true);
+    }
+  }
+
+  close(result = false) {
     this.closing = true;
     requestAnimationFrame(() => {
-      this.closeSubject.next();
+      let payload;
+      if (this.type === NgxQuickDialogType.Prompt) {
+        payload = {
+          result,
+          value: this.promptInput.nativeElement.value || ''
+        };
+      } else {
+        payload = result;
+      }
+      this.closeSubject.next(payload);
     });
   }
 
@@ -93,7 +130,7 @@ export class NgxQuickDialog implements OnInit {
   }
 
   onOkBtnClick() {
-    this.close();
+    this.close(true);
   }
 
   onCancelBtnClick() {
@@ -122,5 +159,21 @@ export class NgxQuickDialog implements OnInit {
       title = titles.prompt;
     }
     return title;
+  }
+
+  ngOnDestroy() {
+    // return the focus to the element that was active
+    // prior to the quick dialog opening
+    const body = document.body;
+    const elWithFocus = this.elWithFocus;
+
+    let elementToFocus;
+    if (elWithFocus && elWithFocus.focus && body.contains(elWithFocus)) {
+      elementToFocus = elWithFocus;
+    } else {
+      elementToFocus = body;
+    }
+    elementToFocus.focus();
+    this.elWithFocus = null;
   }
 }

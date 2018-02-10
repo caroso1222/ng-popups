@@ -2,6 +2,10 @@
      (click)="onBackdropClick()"
      [@fadeInOut]></div>
 <div class="ngx-quick-dialog__content"
+     #dialogContent
+     tabindex="-1"
+     (keyup.esc)="escKey()"
+     (keyup.enter)="enterKey()"
      [class.ngx-quick-dialog__content--closing]="closing">
       <div class="ngx-quick-dialog__header">
         <h3 class="ngx-quick-dialog__title">
@@ -35,6 +39,8 @@
       </p>
       <input *ngIf="type === types.Prompt"
              type="text"
+             #promptInput
+             autofocus
              class="ngx-quick-dialog__input">
       <div class="ngx-quick-dialog__footer">
         <button *ngIf="type === types.Confirm || type === types.Prompt"

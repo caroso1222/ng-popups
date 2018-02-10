@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { NgxQuickDialogService, NgxQuickDialogType } from '../lib';
+import {
+  NgxQuickDialogService,
+  NgxQuickDialogType,
+  NgxQuickDialog,
+  NgxQuickDialogResult
+} from '../lib';
 
 @Component({
   selector: 'app-root',
@@ -18,22 +23,26 @@ export class AppComponent implements OnInit {
   }
 
   open(type: NgxQuickDialogType) {
+    let dialog: NgxQuickDialogResult;
     if (type === NgxQuickDialogType.Alert) {
-      this.dialog.alert('You can’t actually do that. Names can only be edited by administrators.',
+      dialog = this.dialog.alert('You can’t actually do that. Names can only be edited by administrators.',
       {
         title: 'Wait not so fast…',
         theme: 'material'
       });
     } else if (type === NgxQuickDialogType.Confirm) {
-      this.dialog.confirm(`Not my business, but, really, you’re about to make
+      dialog = this.dialog.confirm(`Not my business, but, really, you’re about to make
       an obscene huge mistake. Wanna continue tho?`);
     } else {
-      this.dialog.prompt(`Please type your email below. I will annoy you
+      dialog = this.dialog.prompt(`Please type your email below. I will annoy you
       every single day of your life with garbage emails you can’t care less about.`,
       {
         okButtonText: 'Sure, whatever',
         theme: 'dark'
       });
     }
+    dialog.subscribe(res => {
+      console.log(res);
+    });
   }
 }
