@@ -287,4 +287,27 @@ export class NgxQuickDialog implements OnInit, AfterViewInit, OnDestroy {
     elementToFocus.focus();
     this.elWithFocus = null;
   }
+
+  getOkButtonFillColor() {
+    if (this.theme !== 'material') {
+      return this.config.color;
+    }
+  }
+
+  /**
+   *
+   */
+  getCancelButtonBorderColor() {
+    // material theme doesn't have border
+    if (this.theme !== 'material') {
+      return this.config.color;
+    }
+  }
+
+  getCancelButtonTextColor() {
+    // for dark theme the text should always be white
+    if (this.theme !== 'dark') {
+      return this.config.color;
+    }
+  }
 }

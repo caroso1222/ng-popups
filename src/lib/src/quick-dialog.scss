@@ -1,4 +1,4 @@
-$df-modal-large-size: 800px;
+@import './vars';
 
 .ngx-quick-dialog {
   position: fixed;
@@ -98,8 +98,8 @@ $df-modal-large-size: 800px;
   }
 
   &__cancel-btn {
-    border: 1px solid #5E5BEC;
-    color: #5E5BEC;
+    border: 1px solid $main-color;
+    color: $main-color;
     &:hover {
       background: #fafafa;
     }
@@ -107,7 +107,7 @@ $df-modal-large-size: 800px;
 
   &__ok-btn {
     border: none;
-    background: #5E5BEC;
+    background: $main-color;
     color: white;
     margin-left: 16px;
     min-width: 100px;
@@ -179,11 +179,3 @@ $df-modal-large-size: 800px;
 
 @import './themes/material';
 @import './themes/dark';
-
-// .ngx-quick-dialog {
-//   &--material-theme & {
-//     &__header {
-//       background: orange;
-//     }
-//   }
-// }

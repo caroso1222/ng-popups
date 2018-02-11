@@ -38,7 +38,8 @@ export class AppComponent implements OnInit {
       every single day of your life with garbage emails you can’t care less about.`,
       {
         okButtonText: 'Sure, whatever',
-        theme: 'dark'
+        theme: 'dark',
+        color: 'cyan'
       });
     }
     dialog.subscribe(res => {

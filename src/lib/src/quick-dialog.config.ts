@@ -26,11 +26,11 @@ export class NgxQuickDialogBaseConfig {
   /**
    * Main color of the dialog
    */
-  mainColor?: string;
+  color?: string;
 
   constructor() {
     this.theme = 'default';
-    this.mainColor = '#5E5BEC';
+    this.color = '#3F51B5';
   }
 }
 

@@ -18,7 +18,8 @@ import { NgxQuickDialogModule } from '../lib';
       titles: {
         confirm: 'You better double check dat'
       },
-      cancelButtonText: 'Exit'
+      cancelButtonText: 'Exit',
+      color: 'red'
     }),
   ],
   providers: [],

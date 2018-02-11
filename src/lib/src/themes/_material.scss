@@ -1,3 +1,5 @@
+@import '../vars';
+
 .ngx-quick-dialog {
   &--material-theme & {
     &__divider {
@@ -20,7 +22,7 @@
     &__ok-btn {
       min-width: inherit;
       background: none;
-      color: #5E5BEC;
+      color: $main-color;
       margin-left: 0;
       &:hover {
         background: #fafafa;

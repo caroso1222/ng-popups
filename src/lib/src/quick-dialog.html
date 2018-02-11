@@ -45,6 +45,8 @@
       <div class="ngx-quick-dialog__footer">
         <button *ngIf="type === types.Confirm || type === types.Prompt"
                 class="ngx-quick-dialog__cancel-btn"
+                [style.color]="getCancelButtonTextColor()"
+                [style.border-color]="getCancelButtonBorderColor()"
                 (click)="onCancelBtnClick()">
           <ng-container *ngIf="!config.cancelButtonText; else customCancelLabel"
             i18n="The default text in the Cancel btn@@ngxQuickDialogCancelButton">
@@ -55,6 +57,7 @@
           </ng-template>
         </button>
         <button class="ngx-quick-dialog__ok-btn"
+                [style.background-color]="getOkButtonFillColor()"
                 (click)="onOkBtnClick()">
           <ng-container *ngIf="!config.okButtonText; else customOkLabel"
             i18n="The default text in the OK btn@@ngxQuickDialogOKButton">
