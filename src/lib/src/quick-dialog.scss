@@ -11,6 +11,7 @@
   align-items: center;
   display: flex;
   justify-content: center;
+  padding: 0 20px;
 
   &__backdrop {
     position: absolute;
@@ -100,6 +101,7 @@
   &__cancel-btn {
     border: 1px solid $main-color;
     color: $main-color;
+    background: none;
     &:hover {
       background: #fafafa;
     }
@@ -179,3 +181,15 @@
 
 @import './themes/material';
 @import './themes/dark';
+
+@media screen and (min-device-width : 320px) and (max-device-width : 480px) {
+  .ngx-quick-dialog {
+    &--default-theme &, &--dark-theme & {
+      &__ok-btn, &__cancel-btn {
+        flex: 1;
+        padding: 7px 10px;
+        height: inherit;
+      }
+    }
+  }
+}

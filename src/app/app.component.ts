@@ -39,7 +39,7 @@ export class AppComponent implements OnInit {
       {
         okButtonText: 'Sure, whatever',
         theme: 'dark',
-        color: 'cyan'
+        color: 'purple'
       });
     }
     dialog.subscribe(res => {

@@ -57,6 +57,7 @@
           </ng-template>
         </button>
         <button class="ngx-quick-dialog__ok-btn"
+                [style.color]="getOkButtonTextColor()"
                 [style.background-color]="getOkButtonFillColor()"
                 (click)="onOkBtnClick()">
           <ng-container *ngIf="!config.okButtonText; else customOkLabel"
