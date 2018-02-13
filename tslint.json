@@ -124,7 +124,7 @@
       "camelCase"
     ],
     "component-selector": [
-      true,
+      false,
       "element",
       "ngx",
       "kebab-case"

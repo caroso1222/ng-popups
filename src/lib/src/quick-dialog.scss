@@ -102,6 +102,7 @@
     border: 1px solid $main-color;
     color: $main-color;
     background: none;
+    margin-right: 16px;
     &:hover {
       background: #fafafa;
     }
@@ -111,7 +112,6 @@
     border: none;
     background: $main-color;
     color: white;
-    margin-left: 16px;
     min-width: 100px;
     &:hover {
       opacity: 0.93;
@@ -181,15 +181,5 @@
 
 @import './themes/material';
 @import './themes/dark';
+@import './quick-dialog-responsive';
 
-@media screen and (min-device-width : 320px) and (max-device-width : 480px) {
-  .ngx-quick-dialog {
-    &--default-theme &, &--dark-theme & {
-      &__ok-btn, &__cancel-btn {
-        flex: 1;
-        padding: 7px 10px;
-        height: inherit;
-      }
-    }
-  }
-}

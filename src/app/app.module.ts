@@ -14,13 +14,7 @@ import { NgxQuickDialogModule } from '../lib';
   imports: [
     BrowserAnimationsModule,
     BrowserModule,
-    NgxQuickDialogModule.forRoot({
-      titles: {
-        confirm: 'You better double check dat'
-      },
-      cancelButtonText: 'Exit',
-      color: 'red'
-    }),
+    NgxQuickDialogModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

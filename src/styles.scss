@@ -2,7 +2,7 @@
 
 $font-family: 'Source Sans Pro', sans-serif;
 
-body {
+body, html {
   font-family: $font-family;
   color: #1e282c;
   -webkit-font-smoothing: antialiased;
@@ -13,7 +13,7 @@ body {
   font-weight: 400;
   font-size: 14px;
   overflow-x: hidden;
-  background: #f3f3f3;
+  background: white;
 }
 
 

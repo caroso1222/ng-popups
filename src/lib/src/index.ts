@@ -4,3 +4,4 @@ export * from './quick-dialog.config';
 export * from './quick-dialog.service';
 export * from './quick-dialog.module';
 export * from './quick-dialog-types';
+export * from './quick-dialog-theme';
