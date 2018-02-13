@@ -24,6 +24,7 @@ import {
   OnDestroy
 } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
+import { Observable } from 'rxjs/Observable';
 import { NGX_QUICK_DIALOG_CONFIG } from './quick-dialog.config';
 
 @Component({
@@ -47,7 +48,7 @@ export class NgxQuickDialog implements OnInit, AfterViewInit, OnDestroy {
   /**
    * Observable that emits on every close action
    */
-  $close = this.closeSubject.asObservable();
+  $close: Observable<boolean | NgxQuickDialogPromptResult> = this.closeSubject.asObservable();
 
   /**
    * The type of the dialog
