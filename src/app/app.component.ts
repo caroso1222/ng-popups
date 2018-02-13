@@ -19,9 +19,31 @@ export class AppComponent implements OnInit {
 
   activeTheme: Theme = Theme.Default;
 
+  feature = 'beautiful';
+
+  features = [
+    'beautiful',
+    'cross browser compatible',
+    'highly configurable',
+    'responsive',
+    'astounding',
+    'themed'
+  ];
+
   constructor(private dialog: NgxQuickDialogService) {}
 
   ngOnInit() {
+  }
+
+  switchFeature() {
+    // wait three seconds before changing to the new word
+    setTimeout(() => {
+      let idx = this.features.indexOf(this.feature) + 1;
+      if (idx === this.features.length) {
+        idx = 0;
+      }
+      this.feature = this.features[idx];
+    }, 3000);
   }
 
   open(type: NgxQuickDialogType) {

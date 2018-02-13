@@ -1,7 +1,11 @@
 <div class="wrapper">
   <div class="wrapper--top">
     <h1 class="header">Ngx Quick Dialogs</h1>
-    <p class="subheader">Easily create <span>beautiful</span> alert and confirm dialogs in Angular.</p>
+    <p class="subheader">Easily create 
+      <ngx-dynamic-text class="feature"
+                        (animationFinish)="switchFeature()"
+                        [text]="feature"></ngx-dynamic-text>
+      alert and confirm dialogs in Angular.</p>
     <div class="ctas">
       <button class="simple-btn cta" (click)="open(0)">Alert</button>
       <button class="simple-btn cta" (click)="open(1)">Confirm</button>
