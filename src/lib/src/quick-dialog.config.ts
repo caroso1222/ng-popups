@@ -24,7 +24,7 @@ export class NgxQuickDialogBaseConfig {
   cancelButtonText?: string;
 
   /**
-   * Main color of the dialog
+   * Color for buttons (fill, labels and borders)
    */
   color?: string;
 

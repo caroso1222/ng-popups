@@ -27,7 +27,8 @@ export class AppComponent implements OnInit {
     'highly configurable',
     'responsive',
     'astounding',
-    'themed'
+    'themed',
+    'i18n compatible'
   ];
 
   constructor(private dialog: NgxQuickDialogService) {}
