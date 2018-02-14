@@ -1,5 +1,5 @@
 {
-  "name": "ngx-quick-dialog",
+  "name": "ngx-cool-dialogs",
   "version": "0.1.0",
   "repository": {
     "type": "git",
@@ -9,10 +9,10 @@
     "angular"
   ],
   "license": "MIT",
-  "main": "./bundles/ngx-quick-dialog.umd.js",
-  "es2015": "./esm2015/ngx-quick-dialog.js",
-  "module": "./esm5/ngx-quick-dialog.es5.js",
-  "typings": "./ngx-quick-dialog.d.ts",
+  "main": "./bundles/ngx-cool-dialogs.umd.js",
+  "es2015": "./esm2015/ngx-cool-dialogs.js",
+  "module": "./esm5/ngx-cool-dialogs.es5.js",
+  "typings": "./ngx-cool-dialogs.d.ts",
   "peerDependencies": {
     "@angular/core": "^5.0.0",
     "@angular/common": "^5.0.0",

@@ -1,15 +1,15 @@
 import {
-  NgxQuickDialogLocalConfig,
-  NgxQuickDialogCompleteConfig,
-  NgxQuickDialogGlobalConfig,
-  NgxQuickDialogBaseConfig
-} from './quick-dialog.config';
-import { NgxQuickDialogTheme } from './quick-dialog-theme';
-import { fadeInOut } from './quick-dialog.animation';
+  NgxCoolDialogsLocalConfig,
+  NgxCoolDialogsCompleteConfig,
+  NgxCoolDialogsGlobalConfig,
+  NgxCoolDialogsBaseConfig
+} from './cool-dialogs.config';
+import { NgxCoolDialogTheme } from './cool-dialogs-theme';
+import { fadeInOut } from './cool-dialogs.animation';
 import {
-  NgxQuickDialogType,
-  NgxQuickDialogPromptResult
-} from './quick-dialog-types';
+  NgxCoolDialogType,
+  NgxCoolDialogPromptResult
+} from './cool-dialogs-types';
 import {
   Component,
   HostBinding,
@@ -25,12 +25,12 @@ import {
 } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
 import { Observable } from 'rxjs/Observable';
-import { NGX_QUICK_DIALOG_CONFIG } from './quick-dialog.config';
+import { NGX_QUICK_DIALOG_CONFIG } from './cool-dialogs.config';
 
 @Component({
-  selector: 'ngx-quick-dialog',
-  templateUrl: './quick-dialog.html',
-  styleUrls: ['./quick-dialog.scss'],
+  selector: 'ngx-cool-dialog',
+  templateUrl: './cool-dialog.html',
+  styleUrls: ['./cool-dialog.scss'],
   animations: [fadeInOut],
   host: {
     '(@fadeInOut.done)': 'animationDone()'
@@ -38,27 +38,27 @@ import { NGX_QUICK_DIALOG_CONFIG } from './quick-dialog.config';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class NgxQuickDialog implements OnInit, AfterViewInit, OnDestroy {
+export class NgxCoolDialog implements OnInit, AfterViewInit, OnDestroy {
 
   /**
    * Subject used to stream close events
    */
-  private closeSubject: Subject<boolean | NgxQuickDialogPromptResult> = new Subject();
+  private closeSubject: Subject<boolean | NgxCoolDialogPromptResult> = new Subject();
 
   /**
    * Observable that emits on every close action
    */
-  $close: Observable<boolean | NgxQuickDialogPromptResult> = this.closeSubject.asObservable();
+  $close: Observable<boolean | NgxCoolDialogPromptResult> = this.closeSubject.asObservable();
 
   /**
    * The type of the dialog
    */
-  type: NgxQuickDialogType;
+  type: NgxCoolDialogType;
 
   /**
    * List of all the available dialg types
    */
-  types = NgxQuickDialogType;
+  types = NgxCoolDialogType;
 
   /**
    * Main text to render inside the dialog
@@ -107,30 +107,30 @@ export class NgxQuickDialog implements OnInit, AfterViewInit, OnDestroy {
   /**
    * Whether or not to set the host class
    */
-  @HostBinding('class.ngx-quick-dialog')
+  @HostBinding('class.ngx-cool-dialog')
   setHostClass = true;
 
   /**
    * The config passed by the user via service methods
    */
-  localConfig: NgxQuickDialogLocalConfig;
+  localConfig: NgxCoolDialogsLocalConfig;
 
   /**
    * Mapped config that blends both local and global configs
    */
-  private _config: NgxQuickDialogCompleteConfig;
+  private _config: NgxCoolDialogsCompleteConfig;
 
   /**
    * The current mapped config
    */
-  get config(): NgxQuickDialogCompleteConfig {
+  get config(): NgxCoolDialogsCompleteConfig {
     return this._config;
   }
 
   /**
    * The current theme
    */
-  get theme(): NgxQuickDialogTheme {
+  get theme(): NgxCoolDialogTheme {
     return this.config.theme;
   }
 
@@ -140,16 +140,16 @@ export class NgxQuickDialog implements OnInit, AfterViewInit, OnDestroy {
    */
   constructor(@Optional()
               @Inject(NGX_QUICK_DIALOG_CONFIG)
-              private globalConfig: NgxQuickDialogGlobalConfig) {}
+              private globalConfig: NgxCoolDialogsGlobalConfig) {}
 
   /**
    * Initializes the component with the theme and mapped configs
    */
   ngOnInit() {
     this.elWithFocus = document.activeElement as HTMLElement;
-    const defaultConfig = new NgxQuickDialogBaseConfig();
+    const defaultConfig = new NgxCoolDialogsBaseConfig();
     this._config = Object.assign({}, defaultConfig, this.globalConfig, this.localConfig);
-    this.themeClass = `ngx-quick-dialog--${this.theme}-theme`;
+    this.themeClass = `ngx-cool-dialog--${this.theme}-theme`;
     this.dialogContent.nativeElement.focus();
   }
 
@@ -162,7 +162,7 @@ export class NgxQuickDialog implements OnInit, AfterViewInit, OnDestroy {
 
     // if the type is Prompt, then set the focus to the input and select
     // the text, just as window.prompt does
-    if (this.type === NgxQuickDialogType.Prompt) {
+    if (this.type === NgxCoolDialogType.Prompt) {
       const input = this.promptInput.nativeElement as HTMLInputElement;
       input.focus();
       const defaultText = this.config.defaultText;
@@ -201,7 +201,7 @@ export class NgxQuickDialog implements OnInit, AfterViewInit, OnDestroy {
     this.closing = true;
     requestAnimationFrame(() => {
       let payload;
-      if (this.type === NgxQuickDialogType.Prompt) {
+      if (this.type === NgxCoolDialogType.Prompt) {
         payload = {
           result,
           value: this.promptInput.nativeElement.value || ''
@@ -261,9 +261,9 @@ export class NgxQuickDialog implements OnInit, AfterViewInit, OnDestroy {
     // if no title was passed on `open()`, then search
     // through the titles set via global configs
     const titles = this.config.titles || {};
-    if (this.type === NgxQuickDialogType.Alert) {
+    if (this.type === NgxCoolDialogType.Alert) {
       title = titles.alert;
-    } else if (this.type === NgxQuickDialogType.Confirm) {
+    } else if (this.type === NgxCoolDialogType.Confirm) {
       title = titles.confirm;
     } else {
       title = titles.prompt;
@@ -273,7 +273,7 @@ export class NgxQuickDialog implements OnInit, AfterViewInit, OnDestroy {
 
   /**
    * Component cleanup. return the focus to the element that was active
-   * prior to the quick dialog opening
+   * prior to the dialog opening
    */
   ngOnDestroy() {
     const body = document.body;

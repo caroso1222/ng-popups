@@ -4,7 +4,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 import { AppComponent } from './app.component';
-import { NgxQuickDialogModule } from '../lib';
+import { NgxCoolDialogsModule } from '../lib';
 import { DynamicTextComponent } from './dynamic-text/dynamic-text.component';
 
 
@@ -16,7 +16,7 @@ import { DynamicTextComponent } from './dynamic-text/dynamic-text.component';
   imports: [
     BrowserAnimationsModule,
     BrowserModule,
-    NgxQuickDialogModule.forRoot()
+    NgxCoolDialogsModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

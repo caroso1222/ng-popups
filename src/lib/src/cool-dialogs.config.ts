@@ -1,5 +1,5 @@
 import { InjectionToken } from '@angular/core';
-import { NgxQuickDialogTheme } from './quick-dialog-theme';
+import { NgxCoolDialogTheme } from './cool-dialogs-theme';
 
 /**
  * Base configuration object. It applies to both local and global
@@ -7,11 +7,11 @@ import { NgxQuickDialogTheme } from './quick-dialog-theme';
  * methods; Global referes to config passed through the module's
  * .forRoot()
  */
-export class NgxQuickDialogBaseConfig {
+export class NgxCoolDialogsBaseConfig {
   /**
    * Dialog theme
    */
-  theme?: NgxQuickDialogTheme;
+  theme?: NgxCoolDialogTheme;
 
   /**
    * Text of the 'OK' button
@@ -37,7 +37,7 @@ export class NgxQuickDialogBaseConfig {
 /**
  * Object used to set the titles of all dialogs upfront
  */
-export interface NgxQuickDialogGlobalTitles {
+export interface NgxCoolDialogsGlobalTitles {
   titles?: {
     alert?: string,
     confirm?: string,
@@ -48,7 +48,7 @@ export interface NgxQuickDialogGlobalTitles {
 /**
  * Models the props you can change only via service's methods
  */
-export interface NgxQuickDialogLocalConfigComplement {
+export interface NgxCoolDialogsLocalConfigComplement {
   title?: string;
   defaultText?: string;
 }
@@ -56,27 +56,27 @@ export interface NgxQuickDialogLocalConfigComplement {
 /**
  * Represents the allowable interface for global config only
  */
-export type NgxQuickDialogGlobalConfig =
-  NgxQuickDialogBaseConfig &
-  NgxQuickDialogGlobalTitles;
+export type NgxCoolDialogsGlobalConfig =
+  NgxCoolDialogsBaseConfig &
+  NgxCoolDialogsGlobalTitles;
 
 /**
  * Represents the allowable interface for local config only
  */
-export type NgxQuickDialogLocalConfig =
-  NgxQuickDialogBaseConfig &
-  NgxQuickDialogLocalConfigComplement;
+export type NgxCoolDialogsLocalConfig =
+  NgxCoolDialogsBaseConfig &
+  NgxCoolDialogsLocalConfigComplement;
 
 /**
  * Represents a union between global and local configs
  */
-export type NgxQuickDialogCompleteConfig =
-  NgxQuickDialogBaseConfig &
-  NgxQuickDialogGlobalTitles &
-  NgxQuickDialogLocalConfigComplement;
+export type NgxCoolDialogsCompleteConfig =
+  NgxCoolDialogsBaseConfig &
+  NgxCoolDialogsGlobalTitles &
+  NgxCoolDialogsLocalConfigComplement;
 
 /**
  * Configuration injection token
  */
 export let NGX_QUICK_DIALOG_CONFIG =
-  new InjectionToken<NgxQuickDialogGlobalConfig>('ngx-quick-dialog.config');
+  new InjectionToken<NgxCoolDialogsGlobalConfig>('ngx-cool-dialogs.config');

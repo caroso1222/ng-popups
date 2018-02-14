@@ -1,6 +1,6 @@
 import { AppPage } from './app.po';
 
-describe('ngx-quick-dialog App', () => {
+describe('ngx-cool-dialogs App', () => {
   let page: AppPage;
 
   beforeEach(() => {

@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import {
-  NgxQuickDialogService,
-  NgxQuickDialogType,
-  NgxQuickDialog,
-  NgxQuickDialogResult,
-  NgxQuickDialogTheme
+  NgxCoolDialogsService,
+  NgxCoolDialogType,
+  NgxCoolDialog,
+  NgxCoolDialogResult,
+  NgxCoolDialogTheme
 } from '../lib';
 
 @Component({
@@ -12,7 +12,7 @@ import {
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
   title = 'app';
 
   themes = Object.keys(Theme);
@@ -31,10 +31,7 @@ export class AppComponent implements OnInit {
     'i18n compatible'
   ];
 
-  constructor(private dialog: NgxQuickDialogService) {}
-
-  ngOnInit() {
-  }
+  constructor(private coolDialogs: NgxCoolDialogsService) {}
 
   switchFeature() {
     // wait three seconds before changing to the new word
@@ -47,29 +44,29 @@ export class AppComponent implements OnInit {
     }, 3000);
   }
 
-  open(type: NgxQuickDialogType) {
-    const theme = this.activeTheme.toLowerCase() as NgxQuickDialogTheme;
-    let dialog: NgxQuickDialogResult;
-    if (type === NgxQuickDialogType.Alert) {
-      dialog = this.dialog.alert('You can’t actually do that. Names can only be edited by administrators.',
-      {
-        title: 'Wait not so fast…',
-        theme
-      });
-    } else if (type === NgxQuickDialogType.Confirm) {
-      dialog = this.dialog.confirm(`Not my business, but, really, you’re about to make
-      an obscene huge mistake. Wanna continue tho?`,
-      {
-        title: 'You better double check dat',
-        theme
-      });
+  open(type: NgxCoolDialogType) {
+    const theme = this.activeTheme.toLowerCase() as NgxCoolDialogTheme;
+    let dialog: NgxCoolDialogResult;
+    if (type === NgxCoolDialogType.Alert) {
+      dialog = this.coolDialogs
+        .alert('You can’t actually do that. Names can only be edited by administrators.', {
+          title: 'Wait not so fast…',
+          theme
+        });
+    } else if (type === NgxCoolDialogType.Confirm) {
+      dialog = this.coolDialogs
+        .confirm(`Not my business, but, really, you’re about to make
+                  an obscene huge mistake. Wanna continue tho?`, {
+          title: 'You better double check dat',
+          theme
+        });
     } else {
-      dialog = this.dialog.prompt(`Please type your email below. I will annoy you
-      every single day of your life with garbage emails you can’t care less about.`,
-      {
-        title: 'Newsletter signup',
-        theme
-      });
+      dialog = this.coolDialogs
+        .prompt(`Please type your email below. I will annoy you every single day
+                 of your life with garbage emails you can’t care less about.`, {
+          title: 'Newsletter signup',
+          theme
+        });
     }
     dialog.subscribe(res => {
       console.log(res);

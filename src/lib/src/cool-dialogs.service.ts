@@ -1,9 +1,9 @@
 import {
-  NgxQuickDialogType,
-  NgxQuickDialogResult,
-  NgxQuickDialogPromptResult
-} from './quick-dialog-types';
-import { NgxQuickDialog } from './quick-dialog';
+  NgxCoolDialogType,
+  NgxCoolDialogResult,
+  NgxCoolDialogPromptResult
+} from './cool-dialogs-types';
+import { NgxCoolDialog } from './cool-dialog';
 import {
   Injectable,
   ApplicationRef,
@@ -11,16 +11,16 @@ import {
   Injector
 } from '@angular/core';
 import { ComponentPortal, DomPortalHost } from '@angular/cdk/portal';
-import { NgxQuickDialogLocalConfig } from './quick-dialog.config';
+import { NgxCoolDialogsLocalConfig } from './cool-dialogs.config';
 import { Observable } from 'rxjs/Observable';
 
 @Injectable()
-export class NgxQuickDialogService {
+export class NgxCoolDialogsService {
 
   /**
    * Reference to the main Portal.
    */
-  private quickDialogPortal: ComponentPortal<NgxQuickDialog>;
+  private coolDialogPortal: ComponentPortal<NgxCoolDialog>;
 
   /**
    * Reference to the main Portal Host.
@@ -32,8 +32,8 @@ export class NgxQuickDialogService {
     private componentFactoryResolver: ComponentFactoryResolver,
     private injector: Injector
   ) {
-    // Create a Portal based on the NgxQuickDialog component
-    this.quickDialogPortal = new ComponentPortal(NgxQuickDialog);
+    // Create a Portal based on the NgxCoolDialog component
+    this.coolDialogPortal = new ComponentPortal(NgxCoolDialog);
 
     // Create a PortalHost anchored in document.body
     this.bodyPortalHost = new DomPortalHost(
@@ -48,8 +48,8 @@ export class NgxQuickDialogService {
    * @param message - text to render inside the dialog
    * @param config - optional configuration object
    */
-  alert(message: string, config?: NgxQuickDialogLocalConfig): NgxQuickDialogResult {
-    return this.createQuickDialogComponent(NgxQuickDialogType.Alert, message, config);
+  alert(message: string, config?: NgxCoolDialogsLocalConfig): NgxCoolDialogResult {
+    return this.createCoolDialogComponent(NgxCoolDialogType.Alert, message, config);
   }
 
   /**
@@ -57,8 +57,8 @@ export class NgxQuickDialogService {
    * @param message - text to render inside the dialog
    * @param config - optional configuration object
    */
-  confirm(message: string, config?: NgxQuickDialogLocalConfig): NgxQuickDialogResult {
-    return this.createQuickDialogComponent(NgxQuickDialogType.Confirm, message, config);
+  confirm(message: string, config?: NgxCoolDialogsLocalConfig): NgxCoolDialogResult {
+    return this.createCoolDialogComponent(NgxCoolDialogType.Confirm, message, config);
   }
 
   /**
@@ -66,8 +66,8 @@ export class NgxQuickDialogService {
    * @param message - text to render inside the dialog
    * @param config - optional configuration object
    */
-  prompt(prompt: string, config?: NgxQuickDialogLocalConfig): NgxQuickDialogResult {
-    return this.createQuickDialogComponent(NgxQuickDialogType.Prompt, prompt, config);
+  prompt(prompt: string, config?: NgxCoolDialogsLocalConfig): NgxCoolDialogResult {
+    return this.createCoolDialogComponent(NgxCoolDialogType.Prompt, prompt, config);
   }
 
   /**
@@ -76,18 +76,18 @@ export class NgxQuickDialogService {
    * @param message - main text to render inside the dialog
    * @param config - optional configuration object
    */
-  private createQuickDialogComponent(
-    type: NgxQuickDialogType,
+  private createCoolDialogComponent(
+    type: NgxCoolDialogType,
     message: string,
-    config?: NgxQuickDialogLocalConfig): NgxQuickDialogResult {
-      const componentRef = this.bodyPortalHost.attachComponentPortal(this.quickDialogPortal);
-      const quickDialog = componentRef.instance as NgxQuickDialog;
-      quickDialog.message = message;
-      quickDialog.localConfig = config;
-      quickDialog.type = type;
+    config?: NgxCoolDialogsLocalConfig): NgxCoolDialogResult {
+      const componentRef = this.bodyPortalHost.attachComponentPortal(this.coolDialogPortal);
+      const coolDialog = componentRef.instance as NgxCoolDialog;
+      coolDialog.message = message;
+      coolDialog.localConfig = config;
+      coolDialog.type = type;
       return new Observable(observer => {
-        const subscription = quickDialog.$close
-          .subscribe((res: boolean | NgxQuickDialogPromptResult) => {
+        const subscription = coolDialog.$close
+          .subscribe((res: boolean | NgxCoolDialogPromptResult) => {
             this.bodyPortalHost.detach();
             subscription.unsubscribe();
             observer.next(res);

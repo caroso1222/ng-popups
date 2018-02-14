@@ -10,7 +10,7 @@
     "newLine": "lf",
     "module": "es2015",
     "moduleResolution": "node",
-    "outDir": "../dist/packages/ngx-quick-dialog",
+    "outDir": "../dist/packages/ngx-cool-dialogs",
     "rootDir": ".",
     "sourceMap": true,
     "inlineSources": true,
@@ -20,7 +20,7 @@
     "types": [],
     "baseUrl": ".",
     "paths": {
-      "ngx-quick-dialog": ["../dist/packages/ngx-quick-dialog"]
+      "ngx-cool-dialogs": ["../dist/packages/ngx-cool-dialogs"]
     },
     "typeRoots": [
       "./node_modules/@types/"
@@ -33,7 +33,7 @@
     "annotateForClosureCompiler": true,
     "strictMetadataEmit": true,
     "flatModuleOutFile": "index.js",
-    "flatModuleId": "ngx-quick-dialog",
+    "flatModuleId": "ngx-cool-dialogs",
     "skipTemplateCodegen": true
   }
 }
