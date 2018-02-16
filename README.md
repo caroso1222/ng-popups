@@ -4,7 +4,7 @@ Easily create astounding alert, confirm and prompt dialogs for Angular. Think of
 
 **Demo:** [carlosroso.com/ngx-cool-dialogs](http://carlosroso.com/ngx-cool-dialogs/)
 
-![demo gif](https://media.giphy.com/media/l2SpZitHNMHjic8Mw/giphy.gif)
+
 
 ## Installation
 
