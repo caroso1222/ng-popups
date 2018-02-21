@@ -1,6 +1,6 @@
 # 0.1.1 (21-02-2018)
 
-## Fix
+## Fix
 
 - Dialog closes now even if caller does not subscribe to the response.
 
