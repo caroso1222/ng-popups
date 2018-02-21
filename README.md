@@ -48,7 +48,24 @@ export class MyCoreModule { }
 constructor(private coolDialogs: NgxCoolDialogsService) {}
 ```
 
-3. Start creating dialogs as if there was no tomorrow. 
+3. Make sure you have `BrowserAnimationsModule` imported in your root module (e.g. `app.module.ts`).
+
+```typescript
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+...
+@NgModule({
+  declarations: [ ... ],
+  imports: [
+    ...,
+    BrowserAnimationsModule,
+    ...
+  ],
+  providers: [ ... ],
+  bootstrap: [AppComponent]
+})
+```
+
+4. Start creating dialogs as if there was no tomorrow. 
   Use any of these simple three methods: `alert`, `confirm`, `prompt`.
 
 ```typescript

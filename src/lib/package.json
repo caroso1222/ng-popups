@@ -13,10 +13,12 @@
   "es2015": "./esm2015/ngx-cool-dialogs.js",
   "module": "./esm5/ngx-cool-dialogs.es5.js",
   "typings": "./ngx-cool-dialogs.d.ts",
+  "dependencies": {
+    "@angular/cdk": "^5.0.0"
+  },
   "peerDependencies": {
     "@angular/core": "^5.0.0",
     "@angular/common": "^5.0.0",
-    "@angular/http": "^5.0.0",
-    "@angular/cdk": "^5.0.0"
+    "@angular/http": "^5.0.0"
   }
 }
