@@ -13,6 +13,7 @@ Easily create astounding **alert, confirm and prompt dialogs** for Angular. Thin
 - Easy to use
 - Highly configurable
 - Packaged with the official Angular format
+- Good a11y and i18n support
 
 ## Installation
 
