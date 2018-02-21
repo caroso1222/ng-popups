@@ -85,11 +85,17 @@ export class NgxCoolDialogsService {
       coolDialog.message = message;
       coolDialog.localConfig = config;
       coolDialog.type = type;
+      // subscribe to the dialog closing event so that the portal can actually be detached
+      const subscription = coolDialog.$close
+        .subscribe((res: boolean | NgxCoolDialogPromptResult) => {
+          this.bodyPortalHost.detach();
+          subscription.unsubscribe();
+        });
       return new Observable(observer => {
-        const subscription = coolDialog.$close
+        // subscribe to the dialog closing event to forward the event to the caller
+        const _subscription = coolDialog.$close
           .subscribe((res: boolean | NgxCoolDialogPromptResult) => {
-            this.bodyPortalHost.detach();
-            subscription.unsubscribe();
+            _subscription.unsubscribe();
             observer.next(res);
           });
       });
