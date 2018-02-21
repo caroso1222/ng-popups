@@ -2,9 +2,10 @@
 
 Easily create astounding alert, confirm and prompt dialogs for Angular. Think of `window.alert` and `window.confirm`, but way cooler.
 
-**Demo:** [carlosroso.com/ngx-cool-dialogs](http://carlosroso.com/ngx-cool-dialogs/)
+**Demo:** [https://ngx-cool-dialogs.carlosroso.com/](https://ngx-cool-dialogs.carlosroso.com/)
 
 
+![demo gif](https://user-images.githubusercontent.com/3689856/36462064-25202fc4-168f-11e8-87a0-31cd9b72c3fb.gif)
 
 ## Installation
 
