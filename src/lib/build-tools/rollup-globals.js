@@ -1,19 +1,4 @@
 const rollupGlobals = {
-  'date-fns': 'date.fns',
-  'codemirror': 'codemirror',
-  'ng2-nouislider/src/nouislider': 'nouislider',
-  'svg-pan-zoom': 'svg.pan.zoom',
-  'tslib': 'tslib',
-  'ramda': 'ramda',
-  'file-saver': 'file-saver',
-  'lodash': 'lodash',
-
-  'd3': 'd3',
-  'd3-ease': 'd3.ease',
-  'd3-interpolate': 'd3.interpolate',
-  'd3-scale': 'd3.scale',
-  'd3-selection': 'd3.selection',
-
   '@angular/animations': 'ng.animations',
   '@angular/core': 'ng.core',
   '@angular/common': 'ng.common',
@@ -36,7 +21,6 @@ const rollupGlobals = {
   '@angular/cdk/platform': 'ng.cdk.platform',
   '@angular/cdk/testing': 'ng.cdk.testing',
   '@angular/cdk/overlay': 'ng.cdk.overlay',
-  '@angular/material-examples': 'ng.materialExamples',
 
   'rxjs/BehaviorSubject': 'Rx',
   'rxjs/Observable': 'Rx',
@@ -88,11 +72,6 @@ const rollupGlobals = {
   'rxjs/add/operator/takeUntil': 'Rx.Observable.prototype',
   'rxjs/scheduler/AnimationFrameScheduler': 'Rx',
   'rxjs/scheduler/animationFrame': 'Rx',
-
-  '@ng-bootstrap/ng-bootstrap': 'ngb.ngb',
-  '@ng-bootstrap/ng-bootstrap/tooltip/tooltip.module': 'ngb.tooltip',
-  '@ng-bootstrap/ng-bootstrap/dropdown/dropdown.module': 'ngb.dropdown',
-  '@ng-bootstrap/ng-bootstrap/popover/popover.module': 'ngb.popover',
 };
 
 module.exports = rollupGlobals;
