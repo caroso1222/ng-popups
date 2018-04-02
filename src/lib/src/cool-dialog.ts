@@ -150,7 +150,6 @@ export class NgxCoolDialog implements OnInit, AfterViewInit, OnDestroy {
     const defaultConfig = new NgxCoolDialogsBaseConfig();
     this._config = Object.assign({}, defaultConfig, this.globalConfig, this.localConfig);
     this.themeClass = `ngx-cool-dialog--${this.theme}-theme`;
-    this.dialogContent.nativeElement.focus();
   }
 
   /**
