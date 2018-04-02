@@ -4,9 +4,9 @@
   position: fixed;
   z-index: 9999;
   top: 0;
-  width: 100vw;
+  width: 100%;
   left: 0;
-  height: 100vh;
+  height: 100%;
   text-align: center;
   align-items: center;
   display: flex;
@@ -17,9 +17,9 @@
     position: absolute;
     z-index: 10;
     top: 0;
-    width: 100%;
+    bottom: 0;
     left: 0;
-    height: 100%;
+    right: 0;
     background: rgba(5, 6, 19, .64);
 
     &--hidden {
