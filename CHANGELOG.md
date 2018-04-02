@@ -1,3 +1,9 @@
+# 0.1.3 (02-04-2018)
+
+## Fix
+
+- Page won't automatically scroll anymore on dialog revealing
+
 # 0.1.1 (21-02-2018)
 
 ## Fix
