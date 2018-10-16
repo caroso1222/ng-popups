@@ -34,6 +34,7 @@
     "strictMetadataEmit": true,
     "flatModuleOutFile": "index.js",
     "flatModuleId": "ngx-cool-dialogs",
+    "preserveWhitespaces": false,
     "skipTemplateCodegen": true
   }
 }

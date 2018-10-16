@@ -12,7 +12,7 @@ import {
 } from '@angular/core';
 import { ComponentPortal, DomPortalHost } from '@angular/cdk/portal';
 import { NgxCoolDialogsLocalConfig } from './cool-dialogs.config';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 
 @Injectable()
 export class NgxCoolDialogsService {

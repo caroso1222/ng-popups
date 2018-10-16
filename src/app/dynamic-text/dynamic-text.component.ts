@@ -1,7 +1,5 @@
-import { Observable } from 'rxjs/Observable';
+import { Observable, Subscription, interval } from 'rxjs';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Subscription } from 'rxjs/Subscription';
-import { interval } from 'rxjs/observable/interval';
 
 @Component({
   selector: 'ngx-dynamic-text',
