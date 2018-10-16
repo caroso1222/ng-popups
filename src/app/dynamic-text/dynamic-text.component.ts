@@ -1,5 +1,5 @@
 import { Observable, Subscription, interval } from 'rxjs';
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ApplicationRef } from '@angular/core';
 
 @Component({
   selector: 'ngx-dynamic-text',
@@ -33,22 +33,27 @@ export class DynamicTextComponent implements OnInit {
   @Output()
   animationFinish: EventEmitter<any> = new EventEmitter();
 
-  constructor() { }
+  constructor(private applicationRef: ApplicationRef) { }
 
   ngOnInit() {
   }
 
   renderText(text: string) {
-    this.subscription = interval(100)
-      .subscribe(() => {
-        if (this.renderedText.length < this.targetText.length) {
-          // assuming initial empty text
-          this.renderedText += this.targetText[this.renderedText.length];
-        } else {
-          this.subscription.unsubscribe();
-          this.animationFinish.emit();
-        }
-      });
+    // need to run this inside an appRef isStable to have the service worker properly registered
+    this.applicationRef.isStable.subscribe(s => {
+      if (s) {
+        this.subscription = interval(100)
+        .subscribe(() => {
+          if (this.renderedText.length < this.targetText.length) {
+            // assuming initial empty text
+            this.renderedText += this.targetText[this.renderedText.length];
+          } else {
+            this.subscription.unsubscribe();
+            this.animationFinish.emit();
+          }
+        });
+      }
+    });
   }
 
   deleteText() {

@@ -6,7 +6,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
 import { NgxCoolDialogsModule } from '../lib';
 import { DynamicTextComponent } from './dynamic-text/dynamic-text.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
+console.log({ enabled: environment.production });
 
 @NgModule({
   declarations: [
@@ -16,7 +19,8 @@ import { DynamicTextComponent } from './dynamic-text/dynamic-text.component';
   imports: [
     BrowserAnimationsModule,
     BrowserModule,
-    NgxCoolDialogsModule.forRoot()
+    NgxCoolDialogsModule.forRoot(),
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [],
   bootstrap: [AppComponent]
