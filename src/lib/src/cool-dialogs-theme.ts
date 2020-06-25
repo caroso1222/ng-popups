@@ -1,1 +1,1 @@
-export type NgxCoolDialogTheme = 'default' | 'dark' | 'material';
+export type NgxCoolDialogTheme = 'default' | 'dark' | 'material' | 'neon';
