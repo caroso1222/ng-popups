@@ -323,8 +323,9 @@ export class NgxCoolDialog implements OnInit, AfterViewInit, OnDestroy {
    */
   getCancelButtonTextColor(): string {
     // for dark theme the text should always be white
-    if (this.theme !== 'dark') {
+    if (this.theme !== 'dark' ) {
       return this.config.color;
     }
   }
+ 
 }

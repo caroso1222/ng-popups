@@ -1,0 +1,40 @@
+.ngx-cool-dialog {
+    &--neon-theme & {
+        font-family: 'Roboto', sans-serif;
+        &__divider {
+            border-top-color: #d6d6d6;
+        }
+        &__content {
+            background: #ffffff;
+        }
+        &__title {
+            color: rgb(82, 82, 82);
+            text-transform: capitalize;
+            font-weight: 700;
+        }
+        &__text {
+            color: rgb(58, 58, 58);
+            letter-spacing: .05rem;
+            // font-weight: 600;
+        }
+        &__cancel-btn {
+            background: none;
+            color: #3fce86fc!important;
+            border-color: #3fce879d!important;
+            border-width: 2px;
+            &:hover {
+                background: rgba(#a3a3a3, 0.03);
+            }
+        }
+        &__ok-btn {
+            background-color: #3fce86fc!important;
+            &:hover {
+                background-color: #39ac72fc!important;
+            }
+        }
+        &__input {
+            background: none;
+            color: #fff;
+        }
+    }
+}

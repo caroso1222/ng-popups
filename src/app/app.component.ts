@@ -77,5 +77,6 @@ export class AppComponent {
 export enum Theme {
   Default = 'Default',
   Material = 'Material',
-  Dark = 'Dark'
+  Dark = 'Dark',
+  Neon = 'neon'
 }
