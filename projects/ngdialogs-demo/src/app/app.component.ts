@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import {
   NgDialogsService,
-  NgDialogType,
+  NgDialogsType,
   NgDialogResult,
-  NgDialogTheme,
+  NgDialogsTheme,
 } from 'dist/ngdialogs';
 
 export enum Theme {
@@ -49,10 +49,10 @@ export class AppComponent {
     }, 3000);
   }
 
-  open(type: NgDialogType) {
-    const theme = this.activeTheme.toLowerCase() as NgDialogTheme;
+  open(type: NgDialogsType) {
+    const theme = this.activeTheme.toLowerCase() as NgDialogsTheme;
     let dialog: NgDialogResult;
-    if (type === NgDialogType.Alert) {
+    if (type === NgDialogsType.Alert) {
       dialog = this.ngDialogs.alert(
         'You can’t actually do that. Names can only be edited by administrators.',
         {
@@ -60,7 +60,7 @@ export class AppComponent {
           theme,
         }
       );
-    } else if (type === NgDialogType.Confirm) {
+    } else if (type === NgDialogsType.Confirm) {
       dialog = this.ngDialogs.confirm(
         `Not my business, but, really, you’re about to make
                   an obscene huge mistake. Wanna continue tho?`,

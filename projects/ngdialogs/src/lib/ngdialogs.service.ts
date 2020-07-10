@@ -1,7 +1,7 @@
 import {
-  NgDialogType,
+  NgDialogsType,
   NgDialogResult,
-  NgDialogPromptResult,
+  NgDialogsPromptResult,
 } from './ngdialogs-types';
 import { NgDialog } from './ngdialog';
 import {
@@ -49,7 +49,7 @@ export class NgDialogsService {
    * @param config - optional configuration object
    */
   alert(message: string, config?: NgDialogsLocalConfig): NgDialogResult {
-    return this.createNgDialogComponent(NgDialogType.Alert, message, config);
+    return this.createNgDialogComponent(NgDialogsType.Alert, message, config);
   }
 
   /**
@@ -58,7 +58,7 @@ export class NgDialogsService {
    * @param config - optional configuration object
    */
   confirm(message: string, config?: NgDialogsLocalConfig): NgDialogResult {
-    return this.createNgDialogComponent(NgDialogType.Confirm, message, config);
+    return this.createNgDialogComponent(NgDialogsType.Confirm, message, config);
   }
 
   /**
@@ -67,7 +67,7 @@ export class NgDialogsService {
    * @param config - optional configuration object
    */
   prompt(prompt: string, config?: NgDialogsLocalConfig): NgDialogResult {
-    return this.createNgDialogComponent(NgDialogType.Prompt, prompt, config);
+    return this.createNgDialogComponent(NgDialogsType.Prompt, prompt, config);
   }
 
   /**
@@ -77,7 +77,7 @@ export class NgDialogsService {
    * @param config - optional configuration object
    */
   private createNgDialogComponent(
-    type: NgDialogType,
+    type: NgDialogsType,
     message: string,
     config?: NgDialogsLocalConfig
   ): NgDialogResult {
@@ -90,7 +90,7 @@ export class NgDialogsService {
     ngDialog.type = type;
     // subscribe to the dialog closing event so that the portal can actually be detached
     const subscription = ngDialog.$close.subscribe(
-      (res: boolean | NgDialogPromptResult) => {
+      (res: boolean | NgDialogsPromptResult) => {
         this.bodyPortalHost.detach();
         subscription.unsubscribe();
       }
@@ -98,7 +98,7 @@ export class NgDialogsService {
     return new Observable((observer) => {
       // subscribe to the dialog closing event to forward the event to the caller
       const _subscription = ngDialog.$close.subscribe(
-        (res: boolean | NgDialogPromptResult) => {
+        (res: boolean | NgDialogsPromptResult) => {
           _subscription.unsubscribe();
           observer.next(res);
         }

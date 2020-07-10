@@ -1,4 +1,4 @@
-import { NGDIALOG_CONFIG } from './ngdialogs.config';
+import { NGDIALOGs_CONFIG } from './ngdialogs.config';
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NgDialog } from './ngdialog';
@@ -18,7 +18,7 @@ export class NgDialogsModule {
       providers: [
         NgDialogsService,
         {
-          provide: NGDIALOG_CONFIG,
+          provide: NGDIALOGs_CONFIG,
           useValue: globalConfig,
         },
       ],

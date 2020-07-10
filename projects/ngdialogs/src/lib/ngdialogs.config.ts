@@ -1,5 +1,5 @@
 import { InjectionToken } from '@angular/core';
-import { NgDialogTheme } from './ngdialogs-theme';
+import { NgDialogsTheme } from './ngdialogs-theme';
 
 /**
  * Base configuration object. It applies to both local and global
@@ -11,7 +11,7 @@ export class NgDialogsBaseConfig {
   /**
    * Dialog theme
    */
-  theme?: NgDialogTheme;
+  theme?: NgDialogsTheme;
 
   /**
    * Text of the 'OK' button
@@ -74,6 +74,6 @@ export type NgDialogsCompleteConfig = NgDialogsBaseConfig &
 /**
  * Configuration injection token
  */
-export let NGDIALOG_CONFIG = new InjectionToken<NgDialogsGlobalConfig>(
+export let NGDIALOGs_CONFIG = new InjectionToken<NgDialogsGlobalConfig>(
   'ngdialogs.config'
 );

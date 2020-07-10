@@ -4,9 +4,9 @@ import {
   NgDialogsGlobalConfig,
   NgDialogsBaseConfig,
 } from './ngdialogs.config';
-import { NgDialogTheme } from './ngdialogs-theme';
+import { NgDialogsTheme } from './ngdialogs-theme';
 import { fadeInOut } from './ngdialogs.animation';
-import { NgDialogType, NgDialogPromptResult } from './ngdialogs-types';
+import { NgDialogsType, NgDialogsPromptResult } from './ngdialogs-types';
 import {
   Component,
   HostBinding,
@@ -21,7 +21,7 @@ import {
   OnDestroy,
 } from '@angular/core';
 import { Subject, Observable } from 'rxjs';
-import { NGDIALOG_CONFIG } from './ngdialogs.config';
+import { NGDIALOGs_CONFIG } from './ngdialogs.config';
 
 @Component({
   selector: 'ngdialog',
@@ -38,24 +38,26 @@ export class NgDialog implements OnInit, AfterViewInit, OnDestroy {
   /**
    * Subject used to stream close events
    */
-  private closeSubject: Subject<boolean | NgDialogPromptResult> = new Subject();
+  private closeSubject: Subject<
+    boolean | NgDialogsPromptResult
+  > = new Subject();
 
   /**
    * Observable that emits on every close action
    */
   $close: Observable<
-    boolean | NgDialogPromptResult
+    boolean | NgDialogsPromptResult
   > = this.closeSubject.asObservable();
 
   /**
    * The type of the dialog
    */
-  type: NgDialogType;
+  type: NgDialogsType;
 
   /**
    * List of all the available dialg types
    */
-  types = NgDialogType;
+  types = NgDialogsType;
 
   /**
    * Main text to render inside the dialog
@@ -127,7 +129,7 @@ export class NgDialog implements OnInit, AfterViewInit, OnDestroy {
   /**
    * The current theme
    */
-  get theme(): NgDialogTheme {
+  get theme(): NgDialogsTheme {
     return this.config.theme;
   }
 
@@ -137,7 +139,7 @@ export class NgDialog implements OnInit, AfterViewInit, OnDestroy {
    */
   constructor(
     @Optional()
-    @Inject(NGDIALOG_CONFIG)
+    @Inject(NGDIALOGs_CONFIG)
     private globalConfig: NgDialogsGlobalConfig
   ) {}
 
@@ -165,7 +167,7 @@ export class NgDialog implements OnInit, AfterViewInit, OnDestroy {
 
     // if the type is Prompt, then set the focus to the input and select
     // the text, just as window.prompt does
-    if (this.type === NgDialogType.Prompt) {
+    if (this.type === NgDialogsType.Prompt) {
       const input = this.promptInput.nativeElement as HTMLInputElement;
       input.focus();
       const defaultText = this.config.defaultText;
@@ -204,7 +206,7 @@ export class NgDialog implements OnInit, AfterViewInit, OnDestroy {
     this.closing = true;
     requestAnimationFrame(() => {
       let payload;
-      if (this.type === NgDialogType.Prompt) {
+      if (this.type === NgDialogsType.Prompt) {
         payload = {
           result,
           value: this.promptInput.nativeElement.value || '',
@@ -264,9 +266,9 @@ export class NgDialog implements OnInit, AfterViewInit, OnDestroy {
     // if no title was passed on `open()`, then search
     // through the titles set via global configs
     const titles = this.config.titles || {};
-    if (this.type === NgDialogType.Alert) {
+    if (this.type === NgDialogsType.Alert) {
       title = titles.alert;
-    } else if (this.type === NgDialogType.Confirm) {
+    } else if (this.type === NgDialogsType.Confirm) {
       title = titles.confirm;
     } else {
       title = titles.prompt;
