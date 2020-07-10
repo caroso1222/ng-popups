@@ -2,13 +2,13 @@ import {
   NgxCoolDialogsLocalConfig,
   NgxCoolDialogsCompleteConfig,
   NgxCoolDialogsGlobalConfig,
-  NgxCoolDialogsBaseConfig
+  NgxCoolDialogsBaseConfig,
 } from './cool-dialogs.config';
 import { NgxCoolDialogTheme } from './cool-dialogs-theme';
 import { fadeInOut } from './cool-dialogs.animation';
 import {
   NgxCoolDialogType,
-  NgxCoolDialogPromptResult
+  NgxCoolDialogPromptResult,
 } from './cool-dialogs-types';
 import {
   Component,
@@ -21,10 +21,9 @@ import {
   ViewChild,
   ElementRef,
   AfterViewInit,
-  OnDestroy
+  OnDestroy,
 } from '@angular/core';
-import { Subject } from 'rxjs/Subject';
-import { Observable } from 'rxjs/Observable';
+import { Subject, Observable } from 'rxjs';
 import { NGX_QUICK_DIALOG_CONFIG } from './cool-dialogs.config';
 
 @Component({
@@ -33,22 +32,25 @@ import { NGX_QUICK_DIALOG_CONFIG } from './cool-dialogs.config';
   styleUrls: ['./cool-dialog.scss'],
   animations: [fadeInOut],
   host: {
-    '(@fadeInOut.done)': 'animationDone()'
+    '(@fadeInOut.done)': 'animationDone()',
   },
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NgxCoolDialog implements OnInit, AfterViewInit, OnDestroy {
-
   /**
    * Subject used to stream close events
    */
-  private closeSubject: Subject<boolean | NgxCoolDialogPromptResult> = new Subject();
+  private closeSubject: Subject<
+    boolean | NgxCoolDialogPromptResult
+  > = new Subject();
 
   /**
    * Observable that emits on every close action
    */
-  $close: Observable<boolean | NgxCoolDialogPromptResult> = this.closeSubject.asObservable();
+  $close: Observable<
+    boolean | NgxCoolDialogPromptResult
+  > = this.closeSubject.asObservable();
 
   /**
    * The type of the dialog
@@ -95,13 +97,13 @@ export class NgxCoolDialog implements OnInit, AfterViewInit, OnDestroy {
   /**
    * Reference to the prompt text input
    */
-  @ViewChild('promptInput')
+  @ViewChild('promptInput', { static: false })
   promptInput: ElementRef;
 
   /**
    * Reference to the dialog content
    */
-  @ViewChild('dialogContent')
+  @ViewChild('dialogContent', { static: true })
   dialogContent: ElementRef;
 
   /**
@@ -138,9 +140,11 @@ export class NgxCoolDialog implements OnInit, AfterViewInit, OnDestroy {
    * Initializes the component
    * @param globalConfig - the configuration passed via .forRoot()
    */
-  constructor(@Optional()
-              @Inject(NGX_QUICK_DIALOG_CONFIG)
-              private globalConfig: NgxCoolDialogsGlobalConfig) {}
+  constructor(
+    @Optional()
+    @Inject(NGX_QUICK_DIALOG_CONFIG)
+    private globalConfig: NgxCoolDialogsGlobalConfig
+  ) {}
 
   /**
    * Initializes the component with the theme and mapped configs
@@ -148,7 +152,12 @@ export class NgxCoolDialog implements OnInit, AfterViewInit, OnDestroy {
   ngOnInit() {
     this.elWithFocus = document.activeElement as HTMLElement;
     const defaultConfig = new NgxCoolDialogsBaseConfig();
-    this._config = Object.assign({}, defaultConfig, this.globalConfig, this.localConfig);
+    this._config = Object.assign(
+      {},
+      defaultConfig,
+      this.globalConfig,
+      this.localConfig
+    );
     this.themeClass = `ngx-cool-dialog--${this.theme}-theme`;
   }
 
@@ -203,7 +212,7 @@ export class NgxCoolDialog implements OnInit, AfterViewInit, OnDestroy {
       if (this.type === NgxCoolDialogType.Prompt) {
         payload = {
           result,
-          value: this.promptInput.nativeElement.value || ''
+          value: this.promptInput.nativeElement.value || '',
         };
       } else {
         payload = result;
