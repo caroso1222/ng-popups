@@ -15,7 +15,7 @@
     "lint": "ng lint ngdialogs-demo",
     "build:lib": "ng build --prod ngdialogs",
     "sync-version": "sync-json -v --property version --source package.json projects/ngdialogs/package.json",
-    "version": "npm run build:lib && npm run sync-version"
+    "version": "npm run build:lib && npm run sync-version && git add -A"
   },
   "private": true,
   "dependencies": {

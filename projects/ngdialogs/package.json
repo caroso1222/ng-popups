@@ -1,6 +1,6 @@
 {
   "name": "ngdialogs",
-  "version": "0.1.5",
+  "version": "9.0.0-beta.0",
   "description": "Alert, confirm and prompt dialogs for Angular",
   "repository": {
     "type": "git",
