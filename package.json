@@ -1,20 +1,20 @@
 {
-  "name": "ngdialogs",
+  "name": "ng-popups",
   "version": "9.0.0-beta.3",
   "description": "Alert, confirm and prompt dialogs for Angular",
   "repository": {
     "type": "git",
-    "url": "https://github.com/caroso1222/ngdialogs"
+    "url": "https://github.com/caroso1222/ng-popups"
   },
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve ngdialogs-demo",
-    "build": "ng build --prod ngdialogs-demo",
-    "test": "ng test ngdialogs-demo",
-    "lint": "ng lint ngdialogs-demo",
-    "build:lib": "ng build --prod ngdialogs",
-    "sync-version": "sync-json -v --property version --source package.json projects/ngdialogs/package.json",
+    "start": "ng serve ng-popups-demo",
+    "build": "ng build --prod ng-popups-demo",
+    "test": "ng test ng-popups-demo",
+    "lint": "ng lint ng-popups-demo",
+    "build:lib": "ng build --prod ng-popups",
+    "sync-version": "sync-json -v --property version --source package.json projects/ng-popups/package.json",
     "preversion": "rm -rf ./dist",
     "version": "npm run sync-version && npm run build:lib && git add -A && git commit -m \"bump up\"",
     "postversion": "git push && git push --tags"

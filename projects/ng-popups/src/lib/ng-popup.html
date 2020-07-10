@@ -1,0 +1,72 @@
+<div class="ng-popup__backdrop"
+     (click)="onBackdropClick()"
+     [@fadeInOut]></div>
+<div class="ng-popup__content"
+     #popupContent
+     tabindex="-1"
+     (keyup.esc)="escKey()"
+     (keyup.enter)="enterKey()"
+     [class.ng-popup__content--closing]="closing">
+      <div class="ng-popup__header">
+        <h3 class="ng-popup__title">
+          <ng-container *ngIf="getTitle(); else anotherTitle">
+            {{ getTitle() }}
+          </ng-container>
+          <ng-template #anotherTitle>
+            <ng-container *ngIf="type === types.Alert"
+                          i18n="The default title for Alert dialogs@@ngPopupAlert">
+              Alert
+            </ng-container>
+            <ng-container *ngIf="type === types.Confirm"
+                          i18n="The default title for Confirm dialogs@@ngPopupConfirm">
+              Confirm
+            </ng-container>
+            <ng-container *ngIf="type === types.Prompt"
+                          i18n="The default title for Prompt dialogs@@ngPopupPrompt">
+              Prompt
+            </ng-container>
+          </ng-template>
+        </h3>
+        <button class="ng-popup__close-btn"
+                *ngIf="theme !== 'material'"
+                (click)="onCloseBtnClick()">
+          <span class="ng-popup__close-symbol"></span>
+        </button>
+      </div>
+      <hr class="ng-popup__divider">
+      <p class="ng-popup__text">
+        {{ message }}
+      </p>
+      <input *ngIf="type === types.Prompt"
+             type="text"
+             #promptInput
+             autofocus
+             class="ng-popup__input">
+      <div class="ng-popup__footer">
+        <button *ngIf="type === types.Confirm || type === types.Prompt"
+                class="ng-popup__cancel-btn"
+                [style.color]="getCancelButtonTextColor()"
+                [style.border-color]="getCancelButtonBorderColor()"
+                (click)="onCancelBtnClick()">
+          <ng-container *ngIf="!config.cancelButtonText; else customCancelLabel"
+            i18n="The default text in the Cancel btn@@ngPopupCancelButton">
+            Cancel
+          </ng-container>
+          <ng-template #customCancelLabel>
+            {{ config.cancelButtonText }}
+          </ng-template>
+        </button>
+        <button class="ng-popup__ok-btn"
+                [style.color]="getOkButtonTextColor()"
+                [style.background-color]="getOkButtonFillColor()"
+                (click)="onOkBtnClick()">
+          <ng-container *ngIf="!config.okButtonText; else customOkLabel"
+            i18n="The default text in the OK btn@@ngPopupOKButton">
+            OK
+          </ng-container>
+          <ng-template #customOkLabel>
+            {{ config.okButtonText }}
+          </ng-template>
+        </button>
+      </div>
+</div>

@@ -3,38 +3,38 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "ngdialogs": {
+    "ng-popups": {
       "projectType": "library",
-      "root": "projects/ngdialogs",
-      "sourceRoot": "projects/ngdialogs/src",
+      "root": "projects/ng-popups",
+      "sourceRoot": "projects/ng-popups/src",
       "prefix": "lib",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-ng-packagr:build",
           "options": {
-            "tsConfig": "projects/ngdialogs/tsconfig.lib.json",
-            "project": "projects/ngdialogs/ng-package.json"
+            "tsConfig": "projects/ng-popups/tsconfig.lib.json",
+            "project": "projects/ng-popups/ng-package.json"
           },
           "configurations": {
             "production": {
-              "tsConfig": "projects/ngdialogs/tsconfig.lib.prod.json"
+              "tsConfig": "projects/ng-popups/tsconfig.lib.prod.json"
             }
           }
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "projects/ngdialogs/src/test.ts",
-            "tsConfig": "projects/ngdialogs/tsconfig.spec.json",
-            "karmaConfig": "projects/ngdialogs/karma.conf.js"
+            "main": "projects/ng-popups/src/test.ts",
+            "tsConfig": "projects/ng-popups/tsconfig.spec.json",
+            "karmaConfig": "projects/ng-popups/karma.conf.js"
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "projects/ngdialogs/tsconfig.lib.json",
-              "projects/ngdialogs/tsconfig.spec.json"
+              "projects/ng-popups/tsconfig.lib.json",
+              "projects/ng-popups/tsconfig.spec.json"
             ],
             "exclude": [
               "**/node_modules/**"
@@ -43,32 +43,32 @@
         }
       }
     },
-    "ngdialogs-demo": {
+    "ng-popups-demo": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
           "style": "scss"
         }
       },
-      "root": "projects/ngdialogs-demo",
-      "sourceRoot": "projects/ngdialogs-demo/src",
+      "root": "projects/ng-popups-demo",
+      "sourceRoot": "projects/ng-popups-demo/src",
       "prefix": "app",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/ngdialogs-demo",
-            "index": "projects/ngdialogs-demo/src/index.html",
-            "main": "projects/ngdialogs-demo/src/main.ts",
-            "polyfills": "projects/ngdialogs-demo/src/polyfills.ts",
-            "tsConfig": "projects/ngdialogs-demo/tsconfig.app.json",
+            "outputPath": "dist/ng-popups-demo",
+            "index": "projects/ng-popups-demo/src/index.html",
+            "main": "projects/ng-popups-demo/src/main.ts",
+            "polyfills": "projects/ng-popups-demo/src/polyfills.ts",
+            "tsConfig": "projects/ng-popups-demo/tsconfig.app.json",
             "aot": true,
             "assets": [
-              "projects/ngdialogs-demo/src/favicon.ico",
-              "projects/ngdialogs-demo/src/assets"
+              "projects/ng-popups-demo/src/favicon.ico",
+              "projects/ng-popups-demo/src/assets"
             ],
             "styles": [
-              "projects/ngdialogs-demo/src/styles.scss"
+              "projects/ng-popups-demo/src/styles.scss"
             ],
             "scripts": []
           },
@@ -76,8 +76,8 @@
             "production": {
               "fileReplacements": [
                 {
-                  "replace": "projects/ngdialogs-demo/src/environments/environment.ts",
-                  "with": "projects/ngdialogs-demo/src/environments/environment.prod.ts"
+                  "replace": "projects/ng-popups-demo/src/environments/environment.ts",
+                  "with": "projects/ng-popups-demo/src/environments/environment.prod.ts"
                 }
               ],
               "optimization": true,
@@ -106,33 +106,33 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "ngdialogs-demo:build"
+            "browserTarget": "ng-popups-demo:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "ngdialogs-demo:build:production"
+              "browserTarget": "ng-popups-demo:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "ngdialogs-demo:build"
+            "browserTarget": "ng-popups-demo:build"
           }
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "projects/ngdialogs-demo/src/test.ts",
-            "polyfills": "projects/ngdialogs-demo/src/polyfills.ts",
-            "tsConfig": "projects/ngdialogs-demo/tsconfig.spec.json",
-            "karmaConfig": "projects/ngdialogs-demo/karma.conf.js",
+            "main": "projects/ng-popups-demo/src/test.ts",
+            "polyfills": "projects/ng-popups-demo/src/polyfills.ts",
+            "tsConfig": "projects/ng-popups-demo/tsconfig.spec.json",
+            "karmaConfig": "projects/ng-popups-demo/karma.conf.js",
             "assets": [
-              "projects/ngdialogs-demo/src/favicon.ico",
-              "projects/ngdialogs-demo/src/assets"
+              "projects/ng-popups-demo/src/favicon.ico",
+              "projects/ng-popups-demo/src/assets"
             ],
             "styles": [
-              "projects/ngdialogs-demo/src/styles.scss"
+              "projects/ng-popups-demo/src/styles.scss"
             ],
             "scripts": []
           }
@@ -141,9 +141,9 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "projects/ngdialogs-demo/tsconfig.app.json",
-              "projects/ngdialogs-demo/tsconfig.spec.json",
-              "projects/ngdialogs-demo/e2e/tsconfig.json"
+              "projects/ng-popups-demo/tsconfig.app.json",
+              "projects/ng-popups-demo/tsconfig.spec.json",
+              "projects/ng-popups-demo/e2e/tsconfig.json"
             ],
             "exclude": [
               "**/node_modules/**"
@@ -153,16 +153,16 @@
         "e2e": {
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
-            "protractorConfig": "projects/ngdialogs-demo/e2e/protractor.conf.js",
-            "devServerTarget": "ngdialogs-demo:serve"
+            "protractorConfig": "projects/ng-popups-demo/e2e/protractor.conf.js",
+            "devServerTarget": "ng-popups-demo:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "ngdialogs-demo:serve:production"
+              "devServerTarget": "ng-popups-demo:serve:production"
             }
           }
         }
       }
     }},
-  "defaultProject": "ngdialogs"
+  "defaultProject": "ng-popups"
 }
