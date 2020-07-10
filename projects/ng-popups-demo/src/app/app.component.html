@@ -1,0 +1,26 @@
+<div class="wrapper">
+  <div class="wrapper--top">
+    <h1 class="header">NgPopups</h1>
+    <p class="subheader">Easily create 
+      <ngx-dynamic-text class="feature"
+                        (animationFinish)="switchFeature()"
+                        [text]="feature"></ngx-dynamic-text>
+      alert and confirm dialogs in Angular.</p>
+    <div class="ctas">
+      <button class="simple-btn cta" (click)="open(0)">Alert</button>
+      <button class="simple-btn cta" (click)="open(1)">Confirm</button>
+      <button class="simple-btn cta" (click)="open(2)">Prompt</button>
+    </div>
+    <h4 class="themes-title">Select theme</h4>
+    <button *ngFor="let theme of themes"
+    class="simple-btn theme-btn"
+    [class.theme-btn--active]="activeTheme === theme"
+    (click)="activeTheme = theme">{{theme}}</button>
+  </div>
+  <div class="wrapper--bottom">
+    <a href="https://github.com/caroso1222/ng-popups"
+    target="_blank"
+    rel="noopener noreferrer"
+    class="simple-btn github-btn">GitHub</a>
+  </div>
+</div>

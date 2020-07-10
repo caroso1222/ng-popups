@@ -1,8 +1,8 @@
-# NgDialogs
+# NgPopups
 
 Easily create **alert, confirm and prompt dialogs** for Angular. Think of `window.alert` or `window.confirm`, but more angularish and way prettier.
 
-**Demo:** [https://ngdialogs.carlosroso.com/](https://ngdialogs.carlosroso.com/)
+**Demo:** [https://ng-popups.carlosroso.com/](https://ng-popups.carlosroso.com/)
 
 ![demo gif](https://user-images.githubusercontent.com/3689856/36462314-a970271a-1690-11e8-9949-183e0ce3bf54.gif)
 
@@ -18,34 +18,34 @@ Easily create **alert, confirm and prompt dialogs** for Angular. Think of `windo
 ## Installation
 
 ```
-npm i ngdialogs
+npm i ng-popups
 ```
 
 ## Usage
 
 ### Basic
 
-1. Add the `NgDialogsModule` to your core module (e.g. `app.module.ts`). You can optionally
+1. Add the `NgPopupsModule` to your core module (e.g. `app.module.ts`). You can optionally
 pass a config object as the parameter of the `forRoot` method.
 
 ```typescript
-import { NgDialogsModule } from 'ngdialogs';
+import { NgPopupsModule } from 'ng-popups';
 
 @NgModule({
   ...,
   imports: [
     ...,
-    NgDialogsModule.forRoot(globalConfig)
+    NgPopupsModule.forRoot(globalConfig)
   ],
   ...
 })
 export class MyCoreModule { }
 ```
 
-2. Inject the service `NgDialogsService` as a dependency of your component.
+2. Inject the service `NgPopupsService` as a dependency of your component.
 
 ```typescript
-constructor(private ngDialogs: NgDialogsService) {}
+constructor(private ngPopups: NgPopupsService) {}
 ```
 
 3. Make sure you have `BrowserAnimationsModule` imported in your root module (e.g. `app.module.ts`).
@@ -65,15 +65,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 })
 ```
 
-4. Start creating dialogs as if there was no tomorrow. 
-  Use any of these simple three methods: `alert`, `confirm`, `prompt`.
+4. Use any of these three methods to create the dialogs: `alert`, `confirm`, `prompt`.
 
 ```typescript
 // Alert
-this.ngDialogs.alert('Whoa boy, be careful!');
+this.ngPopups.alert('Whoa boy, be careful!');
 
 // Confirm
-this.ngDialogs.confirm('Do you blindly accept our conditions?')
+this.ngPopups.confirm('Do you blindly accept our conditions?')
   .subscribe(res => {
     if (res) {
       console.log('You clicked OK. You dumb.');
@@ -84,7 +83,7 @@ this.ngDialogs.confirm('Do you blindly accept our conditions?')
 
 // Prompt. Callback param has the following form:
 // { result: boolean, value: string }
-this.ngDialogs.prompt('Please type your email below.')
+this.ngPopups.prompt('Please type your email below.')
   .subscribe(res => {
     if (res.result) {
       console.log('Thanks, now we have your email:', res.value);
@@ -101,17 +100,17 @@ You can globally configure all your dialogs for properties like titles, texts an
 by passing a config object in the `forRoot` module declaration (see step 1).
 
 ```
-NgDialogsModule.forRoot(globalConfig: NgDialogsGlobalConfig)
+NgPopupsModule.forRoot(globalConfig: NgPopupsGlobalConfig)
 ``` 
 
-##### `NgDialogsGlobalConfig`
+##### `NgPopupsGlobalConfig`
 
 Find below an example of a global config object. Please note that all these properties are
 optional. Please check out the SOURCE for full descriptions of all properties and 
 its allowed and default values.
 
 ```javascript
-NgDialogsModule.forRoot({
+NgPopupsModule.forRoot({
   theme: 'material', // available themes: 'default' | 'material' | 'dark'
   okButtonText: 'Yes',
   cancelButtonText: 'No',
@@ -129,13 +128,13 @@ NgDialogsModule.forRoot({
 You can also pass a configuration object to the methods `alert()`, `confirm()` and `prompt()` as the 
 second argument. Any property set here will obviously override the corresponding global configuration.
 
-##### `NgDialogsLocalConfig`
+##### `NgPopupsLocalConfig`
 
 The configuration example below applies for any of the three main methods. Please check out the 
 SOURCE for full descriptions of all properties and its allowed and default values.
 
 ```javascript
-this.ngDialogs.confirm('Do you agree to follow Barça?', {
+this.ngPopups.confirm('Do you agree to follow Barça?', {
   theme: 'dark',
   okButtonText: 'Yes, I do',
   cancelButtonText: 'Nope',
@@ -154,7 +153,7 @@ Feel free to open issues, shoot PRs, reach out on [twitter](https://twitter.com/
 This is really just a good ol' Angular CLI project. Feel free to clone the project and play around if you
 feel like adding new features or fixing bugs. 
 
-Run the demo via `npm start`. All the library code lies inside `projects/ngdialogs`. 
+Run the demo via `npm start`. All the library code lies inside `projects/ng-popups`. 
 
 ## Licence
 

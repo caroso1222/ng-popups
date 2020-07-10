@@ -1,6 +1,6 @@
 import { AppPage } from './app.po';
 
-describe('ngdialogs App', () => {
+describe('ng-popups App', () => {
   let page: AppPage;
 
   beforeEach(() => {

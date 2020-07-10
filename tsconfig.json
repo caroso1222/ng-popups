@@ -19,9 +19,9 @@
       "node_modules/@types"
     ],
     "paths": {
-      "ngdialogs": [
-        "dist/ngdialogs/ngdialogs",
-        "dist/ngdialogs"
+      "ng-popups": [
+        "dist/ng-popups/ng-popups",
+        "dist/ng-popups"
       ]
     }
   },
