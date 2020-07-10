@@ -4,27 +4,71 @@
   "newProjectRoot": "projects",
   "projects": {
     "ngdialogs": {
+      "projectType": "library",
+      "root": "projects/ngdialogs",
+      "sourceRoot": "projects/ngdialogs/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/ngdialogs/tsconfig.lib.json",
+            "project": "projects/ngdialogs/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/ngdialogs/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/ngdialogs/src/test.ts",
+            "tsConfig": "projects/ngdialogs/tsconfig.spec.json",
+            "karmaConfig": "projects/ngdialogs/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/ngdialogs/tsconfig.lib.json",
+              "projects/ngdialogs/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "ngdialogs-demo": {
       "projectType": "application",
-      "schematics": {},
-      "root": "",
-      "sourceRoot": "src",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "projects/ngdialogs-demo",
+      "sourceRoot": "projects/ngdialogs-demo/src",
       "prefix": "app",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/ngdialogs",
-            "index": "src/index.html",
-            "main": "src/main.ts",
-            "polyfills": "src/polyfills.ts",
-            "tsConfig": "tsconfig.app.json",
+            "outputPath": "dist/ngdialogs-demo",
+            "index": "projects/ngdialogs-demo/src/index.html",
+            "main": "projects/ngdialogs-demo/src/main.ts",
+            "polyfills": "projects/ngdialogs-demo/src/polyfills.ts",
+            "tsConfig": "projects/ngdialogs-demo/tsconfig.app.json",
             "aot": true,
             "assets": [
-              "src/favicon.ico",
-              "src/assets"
+              "projects/ngdialogs-demo/src/favicon.ico",
+              "projects/ngdialogs-demo/src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "projects/ngdialogs-demo/src/styles.scss"
             ],
             "scripts": []
           },
@@ -32,8 +76,8 @@
             "production": {
               "fileReplacements": [
                 {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.prod.ts"
+                  "replace": "projects/ngdialogs-demo/src/environments/environment.ts",
+                  "with": "projects/ngdialogs-demo/src/environments/environment.prod.ts"
                 }
               ],
               "optimization": true,
@@ -62,33 +106,33 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "ngdialogs:build"
+            "browserTarget": "ngdialogs-demo:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "ngdialogs:build:production"
+              "browserTarget": "ngdialogs-demo:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "ngdialogs:build"
+            "browserTarget": "ngdialogs-demo:build"
           }
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "src/test.ts",
-            "polyfills": "src/polyfills.ts",
-            "tsConfig": "tsconfig.spec.json",
-            "karmaConfig": "karma.conf.js",
+            "main": "projects/ngdialogs-demo/src/test.ts",
+            "polyfills": "projects/ngdialogs-demo/src/polyfills.ts",
+            "tsConfig": "projects/ngdialogs-demo/tsconfig.spec.json",
+            "karmaConfig": "projects/ngdialogs-demo/karma.conf.js",
             "assets": [
-              "src/favicon.ico",
-              "src/assets"
+              "projects/ngdialogs-demo/src/favicon.ico",
+              "projects/ngdialogs-demo/src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "projects/ngdialogs-demo/src/styles.scss"
             ],
             "scripts": []
           }
@@ -97,9 +141,9 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "tsconfig.app.json",
-              "tsconfig.spec.json",
-              "e2e/tsconfig.json"
+              "projects/ngdialogs-demo/tsconfig.app.json",
+              "projects/ngdialogs-demo/tsconfig.spec.json",
+              "projects/ngdialogs-demo/e2e/tsconfig.json"
             ],
             "exclude": [
               "**/node_modules/**"
@@ -109,12 +153,12 @@
         "e2e": {
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
-            "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "ngdialogs:serve"
+            "protractorConfig": "projects/ngdialogs-demo/e2e/protractor.conf.js",
+            "devServerTarget": "ngdialogs-demo:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "ngdialogs:serve:production"
+              "devServerTarget": "ngdialogs-demo:serve:production"
             }
           }
         }

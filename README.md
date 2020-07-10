@@ -1,6 +1,6 @@
 # NgDialogs
 
-Easily create astounding **alert, confirm and prompt dialogs** for Angular. Think of `window.alert` or `window.confirm`, but more angularish and way prettier.
+Easily create pretty **alert, confirm and prompt dialogs** for Angular. Think of `window.alert` or `window.confirm`, but more angularish and way prettier.
 
 **Demo:** [https://ngdialogs.carlosroso.com/](https://ngdialogs.carlosroso.com/)
 
