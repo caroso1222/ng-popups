@@ -40,6 +40,8 @@
     animation-fill-mode: forwards;
     animation-duration: 0.5s;
     animation-timing-function: cubic-bezier(0.785, 0.135, 0.15, 0.86);
+    box-sizing: border-box;
+
     &--closing {
       animation-name: ng-popup-fade-out-down;
       animation-timing-function: ease-out;
@@ -55,6 +57,7 @@
     border: 1px solid #D6D6D6;
     font-size: 1em;
     padding: 0 10px;
+    box-sizing: border-box;
   }
 
   &__header {
@@ -122,6 +125,7 @@
     border: none;
     background: none;
     padding: 0;
+    cursor: pointer;
   }
 
   &__close-symbol {
