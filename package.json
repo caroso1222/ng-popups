@@ -15,7 +15,8 @@
     "lint": "ng lint ngdialogs-demo",
     "build:lib": "ng build --prod ngdialogs",
     "sync-version": "sync-json -v --property version --source package.json projects/ngdialogs/package.json",
-    "version": "npm run build:lib && npm run sync-version && git add -A && git commit -m \"bump up\"",
+    "preversion": "rm -rf ./dist",
+    "version": "npm run sync-version && npm run build:lib && git add -A && git commit -m \"bump up\"",
     "postversion": "git push && git push --tags"
   },
   "private": true,
