@@ -1,9 +1,9 @@
 import {
-  NgxCoolDialogType,
-  NgxCoolDialogResult,
-  NgxCoolDialogPromptResult,
-} from './cool-dialogs-types';
-import { NgxCoolDialog } from './cool-dialog';
+  NgDialogType,
+  NgDialogResult,
+  NgDialogPromptResult,
+} from './ngdialogs-types';
+import { NgDialog } from './ngdialog';
 import {
   Injectable,
   ApplicationRef,
@@ -11,15 +11,15 @@ import {
   Injector,
 } from '@angular/core';
 import { ComponentPortal, DomPortalHost } from '@angular/cdk/portal';
-import { NgxCoolDialogsLocalConfig } from './cool-dialogs.config';
+import { NgDialogsLocalConfig } from './ngdialogs.config';
 import { Observable } from 'rxjs';
 
 @Injectable()
-export class NgxCoolDialogsService {
+export class NgDialogsService {
   /**
    * Reference to the main Portal.
    */
-  private coolDialogPortal: ComponentPortal<NgxCoolDialog>;
+  private ngDialogPortal: ComponentPortal<NgDialog>;
 
   /**
    * Reference to the main Portal Host.
@@ -31,8 +31,8 @@ export class NgxCoolDialogsService {
     private componentFactoryResolver: ComponentFactoryResolver,
     private injector: Injector
   ) {
-    // Create a Portal based on the NgxCoolDialog component
-    this.coolDialogPortal = new ComponentPortal(NgxCoolDialog);
+    // Create a Portal based on the NgDialog component
+    this.ngDialogPortal = new ComponentPortal(NgDialog);
 
     // Create a PortalHost anchored in document.body
     this.bodyPortalHost = new DomPortalHost(
@@ -48,15 +48,8 @@ export class NgxCoolDialogsService {
    * @param message - text to render inside the dialog
    * @param config - optional configuration object
    */
-  alert(
-    message: string,
-    config?: NgxCoolDialogsLocalConfig
-  ): NgxCoolDialogResult {
-    return this.createCoolDialogComponent(
-      NgxCoolDialogType.Alert,
-      message,
-      config
-    );
+  alert(message: string, config?: NgDialogsLocalConfig): NgDialogResult {
+    return this.createNgDialogComponent(NgDialogType.Alert, message, config);
   }
 
   /**
@@ -64,15 +57,8 @@ export class NgxCoolDialogsService {
    * @param message - text to render inside the dialog
    * @param config - optional configuration object
    */
-  confirm(
-    message: string,
-    config?: NgxCoolDialogsLocalConfig
-  ): NgxCoolDialogResult {
-    return this.createCoolDialogComponent(
-      NgxCoolDialogType.Confirm,
-      message,
-      config
-    );
+  confirm(message: string, config?: NgDialogsLocalConfig): NgDialogResult {
+    return this.createNgDialogComponent(NgDialogType.Confirm, message, config);
   }
 
   /**
@@ -80,15 +66,8 @@ export class NgxCoolDialogsService {
    * @param message - text to render inside the dialog
    * @param config - optional configuration object
    */
-  prompt(
-    prompt: string,
-    config?: NgxCoolDialogsLocalConfig
-  ): NgxCoolDialogResult {
-    return this.createCoolDialogComponent(
-      NgxCoolDialogType.Prompt,
-      prompt,
-      config
-    );
+  prompt(prompt: string, config?: NgDialogsLocalConfig): NgDialogResult {
+    return this.createNgDialogComponent(NgDialogType.Prompt, prompt, config);
   }
 
   /**
@@ -97,29 +76,29 @@ export class NgxCoolDialogsService {
    * @param message - main text to render inside the dialog
    * @param config - optional configuration object
    */
-  private createCoolDialogComponent(
-    type: NgxCoolDialogType,
+  private createNgDialogComponent(
+    type: NgDialogType,
     message: string,
-    config?: NgxCoolDialogsLocalConfig
-  ): NgxCoolDialogResult {
+    config?: NgDialogsLocalConfig
+  ): NgDialogResult {
     const componentRef = this.bodyPortalHost.attachComponentPortal(
-      this.coolDialogPortal
+      this.ngDialogPortal
     );
-    const coolDialog = componentRef.instance as NgxCoolDialog;
-    coolDialog.message = message;
-    coolDialog.localConfig = config;
-    coolDialog.type = type;
+    const ngDialog = componentRef.instance as NgDialog;
+    ngDialog.message = message;
+    ngDialog.localConfig = config;
+    ngDialog.type = type;
     // subscribe to the dialog closing event so that the portal can actually be detached
-    const subscription = coolDialog.$close.subscribe(
-      (res: boolean | NgxCoolDialogPromptResult) => {
+    const subscription = ngDialog.$close.subscribe(
+      (res: boolean | NgDialogPromptResult) => {
         this.bodyPortalHost.detach();
         subscription.unsubscribe();
       }
     );
     return new Observable((observer) => {
       // subscribe to the dialog closing event to forward the event to the caller
-      const _subscription = coolDialog.$close.subscribe(
-        (res: boolean | NgxCoolDialogPromptResult) => {
+      const _subscription = ngDialog.$close.subscribe(
+        (res: boolean | NgDialogPromptResult) => {
           _subscription.unsubscribe();
           observer.next(res);
         }

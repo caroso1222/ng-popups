@@ -1,67 +1,67 @@
-<div class="ngx-cool-dialog__backdrop"
+<div class="ngdialog__backdrop"
      (click)="onBackdropClick()"
      [@fadeInOut]></div>
-<div class="ngx-cool-dialog__content"
+<div class="ngdialog__content"
      #dialogContent
      tabindex="-1"
      (keyup.esc)="escKey()"
      (keyup.enter)="enterKey()"
-     [class.ngx-cool-dialog__content--closing]="closing">
-      <div class="ngx-cool-dialog__header">
-        <h3 class="ngx-cool-dialog__title">
+     [class.ngdialog__content--closing]="closing">
+      <div class="ngdialog__header">
+        <h3 class="ngdialog__title">
           <ng-container *ngIf="getTitle(); else anotherTitle">
             {{ getTitle() }}
           </ng-container>
           <ng-template #anotherTitle>
             <ng-container *ngIf="type === types.Alert"
-                          i18n="The default title for Alert dialogs@@ngxCoolDialogAlert">
+                          i18n="The default title for Alert dialogs@@ngDialogAlert">
               Alert
             </ng-container>
             <ng-container *ngIf="type === types.Confirm"
-                          i18n="The default title for Confirm dialogs@@ngxCoolDialogConfirm">
+                          i18n="The default title for Confirm dialogs@@ngDialogConfirm">
               Confirm
             </ng-container>
             <ng-container *ngIf="type === types.Prompt"
-                          i18n="The default title for Prompt dialogs@@ngxCoolDialogPrompt">
+                          i18n="The default title for Prompt dialogs@@ngDialogPrompt">
               Prompt
             </ng-container>
           </ng-template>
         </h3>
-        <button class="ngx-cool-dialog__close-btn"
+        <button class="ngdialog__close-btn"
                 *ngIf="theme !== 'material'"
                 (click)="onCloseBtnClick()">
-          <span class="ngx-cool-dialog__close-symbol"></span>
+          <span class="ngdialog__close-symbol"></span>
         </button>
       </div>
-      <hr class="ngx-cool-dialog__divider">
-      <p class="ngx-cool-dialog__text">
+      <hr class="ngdialog__divider">
+      <p class="ngdialog__text">
         {{ message }}
       </p>
       <input *ngIf="type === types.Prompt"
              type="text"
              #promptInput
              autofocus
-             class="ngx-cool-dialog__input">
-      <div class="ngx-cool-dialog__footer">
+             class="ngdialog__input">
+      <div class="ngdialog__footer">
         <button *ngIf="type === types.Confirm || type === types.Prompt"
-                class="ngx-cool-dialog__cancel-btn"
+                class="ngdialog__cancel-btn"
                 [style.color]="getCancelButtonTextColor()"
                 [style.border-color]="getCancelButtonBorderColor()"
                 (click)="onCancelBtnClick()">
           <ng-container *ngIf="!config.cancelButtonText; else customCancelLabel"
-            i18n="The default text in the Cancel btn@@ngxCoolDialogCancelButton">
+            i18n="The default text in the Cancel btn@@ngDialogCancelButton">
             Cancel
           </ng-container>
           <ng-template #customCancelLabel>
             {{ config.cancelButtonText }}
           </ng-template>
         </button>
-        <button class="ngx-cool-dialog__ok-btn"
+        <button class="ngdialog__ok-btn"
                 [style.color]="getOkButtonTextColor()"
                 [style.background-color]="getOkButtonFillColor()"
                 (click)="onOkBtnClick()">
           <ng-container *ngIf="!config.okButtonText; else customOkLabel"
-            i18n="The default text in the OK btn@@ngxCoolDialogOKButton">
+            i18n="The default text in the OK btn@@ngDialogOKButton">
             OK
           </ng-container>
           <ng-template #customOkLabel>

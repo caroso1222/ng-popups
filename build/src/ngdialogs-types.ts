@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 /**
  * Available dialog types
  */
-export enum NgxCoolDialogType {
+export enum NgDialogType {
   Alert,
   Confirm,
   Prompt,
@@ -12,7 +12,7 @@ export enum NgxCoolDialogType {
 /**
  * Payload return by the result callback of the prompt dialog
  */
-export interface NgxCoolDialogPromptResult {
+export interface NgDialogPromptResult {
   result: boolean;
   value: string;
 }
@@ -20,6 +20,4 @@ export interface NgxCoolDialogPromptResult {
 /**
  * Generic dialog result type
  */
-export type NgxCoolDialogResult = Observable<
-  boolean | NgxCoolDialogPromptResult
->;
+export type NgDialogResult = Observable<boolean | NgDialogPromptResult>;

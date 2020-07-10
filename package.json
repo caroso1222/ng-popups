@@ -1,10 +1,10 @@
 {
-  "name": "ngx-cool-dialogs",
+  "name": "ngdialogs",
   "version": "0.1.3",
   "description": "Astounding alert, confirm and prompt dialogs for Angular",
   "repository": {
     "type": "git",
-    "url": "https://github.com/caroso1222/ngx-cool-dialogs"
+    "url": "https://github.com/caroso1222/ngdialogs"
   },
   "license": "MIT",
   "scripts": {

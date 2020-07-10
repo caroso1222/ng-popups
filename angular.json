@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "ngten": {
+    "ngdialogs": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/ngten",
+            "outputPath": "dist/ngdialogs",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -62,18 +62,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "ngten:build"
+            "browserTarget": "ngdialogs:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "ngten:build:production"
+              "browserTarget": "ngdialogs:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "ngten:build"
+            "browserTarget": "ngdialogs:build"
           }
         },
         "test": {
@@ -110,15 +110,15 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "ngten:serve"
+            "devServerTarget": "ngdialogs:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "ngten:serve:production"
+              "devServerTarget": "ngdialogs:serve:production"
             }
           }
         }
       }
     }},
-  "defaultProject": "ngten"
+  "defaultProject": "ngdialogs"
 }

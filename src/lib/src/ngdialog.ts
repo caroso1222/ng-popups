@@ -1,15 +1,12 @@
 import {
-  NgxCoolDialogsLocalConfig,
-  NgxCoolDialogsCompleteConfig,
-  NgxCoolDialogsGlobalConfig,
-  NgxCoolDialogsBaseConfig,
-} from './cool-dialogs.config';
-import { NgxCoolDialogTheme } from './cool-dialogs-theme';
-import { fadeInOut } from './cool-dialogs.animation';
-import {
-  NgxCoolDialogType,
-  NgxCoolDialogPromptResult,
-} from './cool-dialogs-types';
+  NgDialogsLocalConfig,
+  NgDialogsCompleteConfig,
+  NgDialogsGlobalConfig,
+  NgDialogsBaseConfig,
+} from './ngdialogs.config';
+import { NgDialogTheme } from './ngdialogs-theme';
+import { fadeInOut } from './ngdialogs.animation';
+import { NgDialogType, NgDialogPromptResult } from './ngdialogs-types';
 import {
   Component,
   HostBinding,
@@ -24,12 +21,12 @@ import {
   OnDestroy,
 } from '@angular/core';
 import { Subject, Observable } from 'rxjs';
-import { NGX_QUICK_DIALOG_CONFIG } from './cool-dialogs.config';
+import { NGDIALOG_CONFIG } from './ngdialogs.config';
 
 @Component({
-  selector: 'ngx-cool-dialog',
-  templateUrl: './cool-dialog.html',
-  styleUrls: ['./cool-dialog.scss'],
+  selector: 'ngdialog',
+  templateUrl: './ngdialog.html',
+  styleUrls: ['./ngdialog.scss'],
   animations: [fadeInOut],
   host: {
     '(@fadeInOut.done)': 'animationDone()',
@@ -37,30 +34,28 @@ import { NGX_QUICK_DIALOG_CONFIG } from './cool-dialogs.config';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class NgxCoolDialog implements OnInit, AfterViewInit, OnDestroy {
+export class NgDialog implements OnInit, AfterViewInit, OnDestroy {
   /**
    * Subject used to stream close events
    */
-  private closeSubject: Subject<
-    boolean | NgxCoolDialogPromptResult
-  > = new Subject();
+  private closeSubject: Subject<boolean | NgDialogPromptResult> = new Subject();
 
   /**
    * Observable that emits on every close action
    */
   $close: Observable<
-    boolean | NgxCoolDialogPromptResult
+    boolean | NgDialogPromptResult
   > = this.closeSubject.asObservable();
 
   /**
    * The type of the dialog
    */
-  type: NgxCoolDialogType;
+  type: NgDialogType;
 
   /**
    * List of all the available dialg types
    */
-  types = NgxCoolDialogType;
+  types = NgDialogType;
 
   /**
    * Main text to render inside the dialog
@@ -109,30 +104,30 @@ export class NgxCoolDialog implements OnInit, AfterViewInit, OnDestroy {
   /**
    * Whether or not to set the host class
    */
-  @HostBinding('class.ngx-cool-dialog')
+  @HostBinding('class.ngdialog')
   setHostClass = true;
 
   /**
    * The config passed by the user via service methods
    */
-  localConfig: NgxCoolDialogsLocalConfig;
+  localConfig: NgDialogsLocalConfig;
 
   /**
    * Mapped config that blends both local and global configs
    */
-  private _config: NgxCoolDialogsCompleteConfig;
+  private _config: NgDialogsCompleteConfig;
 
   /**
    * The current mapped config
    */
-  get config(): NgxCoolDialogsCompleteConfig {
+  get config(): NgDialogsCompleteConfig {
     return this._config;
   }
 
   /**
    * The current theme
    */
-  get theme(): NgxCoolDialogTheme {
+  get theme(): NgDialogTheme {
     return this.config.theme;
   }
 
@@ -142,8 +137,8 @@ export class NgxCoolDialog implements OnInit, AfterViewInit, OnDestroy {
    */
   constructor(
     @Optional()
-    @Inject(NGX_QUICK_DIALOG_CONFIG)
-    private globalConfig: NgxCoolDialogsGlobalConfig
+    @Inject(NGDIALOG_CONFIG)
+    private globalConfig: NgDialogsGlobalConfig
   ) {}
 
   /**
@@ -151,14 +146,14 @@ export class NgxCoolDialog implements OnInit, AfterViewInit, OnDestroy {
    */
   ngOnInit() {
     this.elWithFocus = document.activeElement as HTMLElement;
-    const defaultConfig = new NgxCoolDialogsBaseConfig();
+    const defaultConfig = new NgDialogsBaseConfig();
     this._config = Object.assign(
       {},
       defaultConfig,
       this.globalConfig,
       this.localConfig
     );
-    this.themeClass = `ngx-cool-dialog--${this.theme}-theme`;
+    this.themeClass = `ngdialog--${this.theme}-theme`;
   }
 
   /**
@@ -170,7 +165,7 @@ export class NgxCoolDialog implements OnInit, AfterViewInit, OnDestroy {
 
     // if the type is Prompt, then set the focus to the input and select
     // the text, just as window.prompt does
-    if (this.type === NgxCoolDialogType.Prompt) {
+    if (this.type === NgDialogType.Prompt) {
       const input = this.promptInput.nativeElement as HTMLInputElement;
       input.focus();
       const defaultText = this.config.defaultText;
@@ -209,7 +204,7 @@ export class NgxCoolDialog implements OnInit, AfterViewInit, OnDestroy {
     this.closing = true;
     requestAnimationFrame(() => {
       let payload;
-      if (this.type === NgxCoolDialogType.Prompt) {
+      if (this.type === NgDialogType.Prompt) {
         payload = {
           result,
           value: this.promptInput.nativeElement.value || '',
@@ -269,9 +264,9 @@ export class NgxCoolDialog implements OnInit, AfterViewInit, OnDestroy {
     // if no title was passed on `open()`, then search
     // through the titles set via global configs
     const titles = this.config.titles || {};
-    if (this.type === NgxCoolDialogType.Alert) {
+    if (this.type === NgDialogType.Alert) {
       title = titles.alert;
-    } else if (this.type === NgxCoolDialogType.Confirm) {
+    } else if (this.type === NgDialogType.Confirm) {
       title = titles.confirm;
     } else {
       title = titles.prompt;

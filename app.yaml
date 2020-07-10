@@ -1,4 +1,4 @@
-service: ngx-cool-dialogs
+service: ngdialogs
 runtime: python27
 api_version: 1
 threadsafe: true

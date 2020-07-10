@@ -1,6 +1,6 @@
 @import './vars';
 
-.ngx-cool-dialog {
+.ngdialog {
   position: fixed;
   z-index: 9999;
   top: 0;
@@ -36,12 +36,12 @@
     z-index: 20;
     position: relative;
     padding: 19px 21px;
-    animation-name: ngx-cool-dialog-fade-in-up;
+    animation-name: ngdialog-fade-in-up;
     animation-fill-mode: forwards;
     animation-duration: 0.5s;
     animation-timing-function: cubic-bezier(0.785, 0.135, 0.15, 0.86);
     &--closing {
-      animation-name: ngx-cool-dialog-fade-out-down;
+      animation-name: ngdialog-fade-out-down;
       animation-timing-function: ease-out;
     }
   }
@@ -157,7 +157,7 @@
   }
 }
 
-@keyframes ngx-cool-dialog-fade-in-up {
+@keyframes ngdialog-fade-in-up {
   from {
     opacity: 0;
     transform: translateY(11px);
@@ -168,7 +168,7 @@
   }
 }
 
-@keyframes ngx-cool-dialog-fade-out-down {
+@keyframes ngdialog-fade-out-down {
   from {
     opacity: 1;
     transform: translateY(0);
@@ -181,5 +181,5 @@
 
 @import './themes/material';
 @import './themes/dark';
-@import './cool-dialog-responsive';
+@import './ngdialog-responsive';
 

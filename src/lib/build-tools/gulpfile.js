@@ -7,7 +7,8 @@ const path = require('path');
 const runSequence = require('run-sequence');
 
 const buildScssTask = require('./build-scss-task');
-const inlineResources = require('./inline-resources').inlineResourcesForDirectory;
+const inlineResources = require('./inline-resources')
+  .inlineResourcesForDirectory;
 const bundleSrc = require('./src-bundler').bundlePrimarySrc;
 const compileSrc = require('./src-compiler').compile;
 const composeRelease = require('./release-composer').composeRelease;
@@ -19,7 +20,7 @@ const tsconfigName = 'tsconfig-build.json';
 const distDir = path.join(rootDir, 'dist');
 const bundlesDir = path.join(distDir, 'bundles');
 const packagesDir = path.join(distDir, 'packages');
-const packageName = 'ngx-cool-dialogs';
+const packageName = 'ngdialogs';
 const releaseDirName = '_$releases';
 const releaseDir = path.join(distDir, releaseDirName, packageName);
 const outputDir = path.join(packagesDir, packageName);
@@ -32,12 +33,12 @@ const htmlMinifierOptions = {
   collapseWhitespace: true,
   removeComments: true,
   caseSensitive: true,
-  removeAttributeQuotes: false
+  removeAttributeQuotes: false,
 };
 
 gulp.task('default', ['build']);
 
-gulp.task('build', function(cb) {
+gulp.task('build', function (cb) {
   runSequence(
     'clean',
     'copy',
@@ -46,7 +47,7 @@ gulp.task('build', function(cb) {
     'rollup',
     'release',
     'polish',
-    function(err) {
+    function (err) {
       if (err) {
         chalk.red(`ERROR: ${err.message}`);
       } else {
@@ -56,22 +57,26 @@ gulp.task('build', function(cb) {
   );
 });
 
-gulp.task('clean', function() {
+gulp.task('clean', function () {
   return del([`${buildDir}/**/*`, `${distDir}/**/*`]);
 });
 
 gulp.task('copy', ['copy:package-version']);
 
-gulp.task('copy:src', ['clean'], function() {
+gulp.task('copy:src', ['clean'], function () {
   return gulp
-    .src([path.join(libDir, '/**/*'),
-          `!${path.join(libDir + '/build-tools')}`,
-          `!${path.join(libDir + '/build-tools/**')}`],
-          { base: libDir })
+    .src(
+      [
+        path.join(libDir, '/**/*'),
+        `!${path.join(libDir + '/build-tools')}`,
+        `!${path.join(libDir + '/build-tools/**')}`,
+      ],
+      { base: libDir }
+    )
     .pipe(gulp.dest(buildDir));
 });
 
-gulp.task('copy:package-version', ['copy:src'], function() {
+gulp.task('copy:package-version', ['copy:src'], function () {
   const LIB_VERSION = require('../package.json').version;
 
   //update version on package.json on build folder
@@ -86,23 +91,23 @@ gulp.task('copy:package-version', ['copy:src'], function() {
     .pipe(gulp.dest(buildDir));
 });
 
-gulp.task('ngc', function() {
+gulp.task('ngc', function () {
   return compileSrc(srcFolder, {
     libDir: buildDir,
     tsconfigName: tsconfigName,
-    outputDir: outputDir
+    outputDir: outputDir,
   });
 });
 
-gulp.task('rollup', function() {
+gulp.task('rollup', function () {
   return bundleSrc({
     outputDir: outputDir,
     bundlesDir: bundlesDir,
-    packageName: packageName
+    packageName: packageName,
   });
 });
 
-gulp.task('release', function() {
+gulp.task('release', function () {
   return composeRelease({
     src: srcFolder,
     distDir: distDir,
@@ -110,23 +115,23 @@ gulp.task('release', function() {
     bundlesDir: bundlesDir,
     sourceDir: buildDir,
     releaseDir: releaseDir,
-    releaseDirName: releaseDirName
+    releaseDirName: releaseDirName,
   });
 });
 
-gulp.task('lib:assets', function() {
-  return new Promise(resolve => {
+gulp.task('lib:assets', function () {
+  return new Promise((resolve) => {
     runSequence(
       'lib:assets:scss:octal-literal-fix',
       'lib:assets:scss',
       'lib:assets:copy-styles',
       'lib:assets:html',
       'lib:assets:inline',
-      function(err) {
+      function (err) {
         if (err) {
           chalk.red(`ERROR: ${err.message}`);
         } else {
-          chalk.green("Assets finished succesfully");
+          chalk.green('Assets finished succesfully');
           resolve();
         }
       }
@@ -150,7 +155,7 @@ gulp.task('lib:assets', function() {
  *
  * content:"\\1234";
  */
-gulp.task('lib:assets:scss:octal-literal-fix', function() {
+gulp.task('lib:assets:scss:octal-literal-fix', function () {
   return gulp
     .src([`${buildDir}/**/*.scss`])
     .pipe(replace(/content:\s*["'](\\[\w]+)["']\s*;/g, 'content:"\\$1";'))
@@ -177,27 +182,24 @@ gulp.task('lib:assets:inline', () => {
 });
 
 gulp.task('polish', () => {
-  return new Promise(resolve => {
+  return new Promise((resolve) => {
     runSequence(
       'polish:clean:dirs',
       'polish:move:release',
       'polish:clean:release',
-      function(err) {
+      function (err) {
         if (err) {
           chalk.red(`ERROR: ${err.message}`);
         } else {
           resolve();
         }
       }
-    )
+    );
   });
 });
 
 gulp.task('polish:clean:dirs', () => {
-  return del([
-    buildDir,
-    bundlesDir,
-    packagesDir]);
+  return del([buildDir, bundlesDir, packagesDir]);
 });
 
 gulp.task('polish:move:release', () => {
@@ -221,6 +223,6 @@ function deleteFolders(folders) {
  * replaces slashes by back slashes
  * @param filePath
  */
-function replaceSlashes(filePath){
+function replaceSlashes(filePath) {
   return filePath.replace(/\\/g, '/');
 }

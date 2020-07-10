@@ -1,0 +1,185 @@
+@import './vars';
+
+.ngdialog {
+  position: fixed;
+  z-index: 9999;
+  top: 0;
+  width: 100%;
+  left: 0;
+  height: 100%;
+  text-align: center;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  padding: 0 20px;
+
+  &__backdrop {
+    position: absolute;
+    z-index: 10;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(5, 6, 19, .64);
+
+    &--hidden {
+      background: transparent;
+    }
+  }
+
+  &__content {
+    width: 425px;
+    background: #fff;
+    box-shadow: 0 3px 13px rgba(#000, .5);
+    border-radius: 2px;
+    overflow: hidden;
+    z-index: 20;
+    position: relative;
+    padding: 19px 21px;
+    animation-name: ngdialog-fade-in-up;
+    animation-fill-mode: forwards;
+    animation-duration: 0.5s;
+    animation-timing-function: cubic-bezier(0.785, 0.135, 0.15, 0.86);
+    &--closing {
+      animation-name: ngdialog-fade-out-down;
+      animation-timing-function: ease-out;
+    }
+  }
+
+  &__input {
+    display: block;
+    width: 100%;
+    margin-bottom: 20px;
+    height: 38px;
+    border-radius: 2px;
+    border: 1px solid #D6D6D6;
+    font-size: 1em;
+    padding: 0 10px;
+  }
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 18px;
+    align-items: center;
+  }
+
+  &__title {
+    margin: 0;
+    font-size: 1.14em;
+    font-weight: 600;
+  }
+
+  &__divider {
+    border-top: 1px solid #EDEDED;
+    border-bottom: none;
+    margin-bottom: 14px;
+    border-right: none;
+    border-left: none;
+  }
+
+  &__text {
+    margin-top: 0;
+    text-align: left;
+    line-height: 1.6em;
+    margin-bottom: 16px;
+  }
+
+  &__footer {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  &__cancel-btn, &__ok-btn {
+    height: 36px;
+    padding: 0 24px;
+    border-radius: 2px;
+    font-weight: 600;
+    font-size: 1em;
+  }
+
+  &__cancel-btn {
+    border: 1px solid $main-color;
+    color: $main-color;
+    background: none;
+    margin-right: 16px;
+    &:hover {
+      background: #fafafa;
+    }
+  }
+
+  &__ok-btn {
+    border: none;
+    background: $main-color;
+    color: white;
+    min-width: 100px;
+    &:hover {
+      opacity: 0.93;
+    }
+  }
+
+  &__close-btn {
+    border: none;
+    background: none;
+    padding: 0;
+  }
+
+  &__close-symbol {
+    height: 12px;
+    width: 12px;
+    position: relative;
+    display: block;
+    &:after, &:before {
+      content: "";
+      height: 2px;
+      width: 100%;
+      border-radius: 2px;
+      background: #D9D9D9;
+      position: absolute;
+      top: calc(50% - 1px);
+      left: 0;
+    }
+    &:after {
+      transform: rotate(45deg);
+    }
+    &:before {
+      transform: rotate(-45deg);
+    }
+    &:hover {
+      &:after, &:before {
+        background: #BDBDBD;
+      }
+    }
+  }
+
+  &--dark-theme {
+    @import './themes/dark';
+  }
+}
+
+@keyframes ngdialog-fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(11px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes ngdialog-fade-out-down {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(17px);
+  }
+}
+
+@import './themes/material';
+@import './themes/dark';
+@import './ngdialog-responsive';
+

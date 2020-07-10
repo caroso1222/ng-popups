@@ -1,16 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import {
-  NgxCoolDialogsService,
-  NgxCoolDialogType,
-  NgxCoolDialog,
-  NgxCoolDialogResult,
-  NgxCoolDialogTheme
+  NgDialogsService,
+  NgDialogType,
+  NgDialog,
+  NgDialogResult,
+  NgDialogTheme,
 } from '../lib';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
   title = 'app';
@@ -28,10 +28,10 @@ export class AppComponent {
     'responsive',
     'astounding',
     'themed',
-    'i18n compatible'
+    'i18n compatible',
   ];
 
-  constructor(private coolDialogs: NgxCoolDialogsService) {}
+  constructor(private ngDialogs: NgDialogsService) {}
 
   switchFeature() {
     // wait three seconds before changing to the new word
@@ -44,31 +44,37 @@ export class AppComponent {
     }, 3000);
   }
 
-  open(type: NgxCoolDialogType) {
-    const theme = this.activeTheme.toLowerCase() as NgxCoolDialogTheme;
-    let dialog: NgxCoolDialogResult;
-    if (type === NgxCoolDialogType.Alert) {
-      dialog = this.coolDialogs
-        .alert('You can’t actually do that. Names can only be edited by administrators.', {
+  open(type: NgDialogType) {
+    const theme = this.activeTheme.toLowerCase() as NgDialogTheme;
+    let dialog: NgDialogResult;
+    if (type === NgDialogType.Alert) {
+      dialog = this.ngDialogs.alert(
+        'You can’t actually do that. Names can only be edited by administrators.',
+        {
           title: 'Wait not so fast…',
-          theme
-        });
-    } else if (type === NgxCoolDialogType.Confirm) {
-      dialog = this.coolDialogs
-        .confirm(`Not my business, but, really, you’re about to make
-                  an obscene huge mistake. Wanna continue tho?`, {
+          theme,
+        }
+      );
+    } else if (type === NgDialogType.Confirm) {
+      dialog = this.ngDialogs.confirm(
+        `Not my business, but, really, you’re about to make
+                  an obscene huge mistake. Wanna continue tho?`,
+        {
           title: 'You better double check dat',
-          theme
-        });
+          theme,
+        }
+      );
     } else {
-      dialog = this.coolDialogs
-        .prompt(`Please type your email below. I will annoy you every single day
-                 of your life with garbage emails you can’t care less about.`, {
+      dialog = this.ngDialogs.prompt(
+        `Please type your email below. I will annoy you every single day
+                 of your life with garbage emails you can’t care less about.`,
+        {
           title: 'Newsletter signup',
-          theme
-        });
+          theme,
+        }
+      );
     }
-    dialog.subscribe(res => {
+    dialog.subscribe((res) => {
       console.log(res);
     });
   }
@@ -77,5 +83,5 @@ export class AppComponent {
 export enum Theme {
   Default = 'Default',
   Material = 'Material',
-  Dark = 'Dark'
+  Dark = 'Dark',
 }
