@@ -1,6 +1,6 @@
 # NgDialogs
 
-Easily create pretty **alert, confirm and prompt dialogs** for Angular. Think of `window.alert` or `window.confirm`, but more angularish and way prettier.
+Easily create **alert, confirm and prompt dialogs** for Angular. Think of `window.alert` or `window.confirm`, but more angularish and way prettier.
 
 **Demo:** [https://ngdialogs.carlosroso.com/](https://ngdialogs.carlosroso.com/)
 
@@ -152,7 +152,9 @@ autofill the text input.
 Feel free to open issues, shoot PRs, reach out on [twitter](https://twitter.com/caroso1222), etc.
 
 This is really just a good ol' Angular CLI project. Feel free to clone the project and play around if you
-feel like adding new features or fixing bugs. All the library code lies inside `./app/lib/src`. 
+feel like adding new features or fixing bugs. 
+
+Run the demo via `npm start`. All the library code lies inside `projects/ngdialogs`. 
 
 ## Licence
 
