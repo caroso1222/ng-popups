@@ -20,4 +20,4 @@ export interface NgDialogsPromptResult {
 /**
  * Generic dialog result type
  */
-export type NgDialogResult = Observable<boolean | NgDialogsPromptResult>;
+export type NgDialogsResult = Observable<boolean | NgDialogsPromptResult>;

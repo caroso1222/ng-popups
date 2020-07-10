@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import {
   NgDialogsService,
   NgDialogsType,
-  NgDialogResult,
+  NgDialogsResult,
   NgDialogsTheme,
 } from 'dist/ngdialogs';
 
@@ -51,7 +51,7 @@ export class AppComponent {
 
   open(type: NgDialogsType) {
     const theme = this.activeTheme.toLowerCase() as NgDialogsTheme;
-    let dialog: NgDialogResult;
+    let dialog: NgDialogsResult;
     if (type === NgDialogsType.Alert) {
       dialog = this.ngDialogs.alert(
         'You can’t actually do that. Names can only be edited by administrators.',

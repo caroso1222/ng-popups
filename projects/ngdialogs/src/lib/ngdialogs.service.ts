@@ -1,6 +1,6 @@
 import {
   NgDialogsType,
-  NgDialogResult,
+  NgDialogsResult,
   NgDialogsPromptResult,
 } from './ngdialogs-types';
 import { NgDialog } from './ngdialog';
@@ -10,7 +10,7 @@ import {
   ComponentFactoryResolver,
   Injector,
 } from '@angular/core';
-import { ComponentPortal, DomPortalHost } from '@angular/cdk/portal';
+import { ComponentPortal, DomPortalOutlet } from '@angular/cdk/portal';
 import { NgDialogsLocalConfig } from './ngdialogs.config';
 import { Observable } from 'rxjs';
 
@@ -24,7 +24,7 @@ export class NgDialogsService {
   /**
    * Reference to the main Portal Host.
    */
-  private bodyPortalHost: DomPortalHost;
+  private bodyPortalHost: DomPortalOutlet;
 
   constructor(
     private appRef: ApplicationRef,
@@ -35,7 +35,7 @@ export class NgDialogsService {
     this.ngDialogPortal = new ComponentPortal(NgDialog);
 
     // Create a PortalHost anchored in document.body
-    this.bodyPortalHost = new DomPortalHost(
+    this.bodyPortalHost = new DomPortalOutlet(
       document.body,
       this.componentFactoryResolver,
       this.appRef,
@@ -48,7 +48,7 @@ export class NgDialogsService {
    * @param message - text to render inside the dialog
    * @param config - optional configuration object
    */
-  alert(message: string, config?: NgDialogsLocalConfig): NgDialogResult {
+  alert(message: string, config?: NgDialogsLocalConfig): NgDialogsResult {
     return this.createNgDialogComponent(NgDialogsType.Alert, message, config);
   }
 
@@ -57,7 +57,7 @@ export class NgDialogsService {
    * @param message - text to render inside the dialog
    * @param config - optional configuration object
    */
-  confirm(message: string, config?: NgDialogsLocalConfig): NgDialogResult {
+  confirm(message: string, config?: NgDialogsLocalConfig): NgDialogsResult {
     return this.createNgDialogComponent(NgDialogsType.Confirm, message, config);
   }
 
@@ -66,7 +66,7 @@ export class NgDialogsService {
    * @param message - text to render inside the dialog
    * @param config - optional configuration object
    */
-  prompt(prompt: string, config?: NgDialogsLocalConfig): NgDialogResult {
+  prompt(prompt: string, config?: NgDialogsLocalConfig): NgDialogsResult {
     return this.createNgDialogComponent(NgDialogsType.Prompt, prompt, config);
   }
 
@@ -80,7 +80,7 @@ export class NgDialogsService {
     type: NgDialogsType,
     message: string,
     config?: NgDialogsLocalConfig
-  ): NgDialogResult {
+  ): NgDialogsResult {
     const componentRef = this.bodyPortalHost.attachComponentPortal(
       this.ngDialogPortal
     );

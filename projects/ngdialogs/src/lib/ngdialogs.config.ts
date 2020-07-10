@@ -74,6 +74,6 @@ export type NgDialogsCompleteConfig = NgDialogsBaseConfig &
 /**
  * Configuration injection token
  */
-export let NGDIALOGs_CONFIG = new InjectionToken<NgDialogsGlobalConfig>(
+export let NGDIALOGS_CONFIG = new InjectionToken<NgDialogsGlobalConfig>(
   'ngdialogs.config'
 );

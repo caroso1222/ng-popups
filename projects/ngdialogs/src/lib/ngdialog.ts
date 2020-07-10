@@ -21,7 +21,7 @@ import {
   OnDestroy,
 } from '@angular/core';
 import { Subject, Observable } from 'rxjs';
-import { NGDIALOGs_CONFIG } from './ngdialogs.config';
+import { NGDIALOGS_CONFIG } from './ngdialogs.config';
 
 @Component({
   selector: 'ngdialog',
@@ -139,7 +139,7 @@ export class NgDialog implements OnInit, AfterViewInit, OnDestroy {
    */
   constructor(
     @Optional()
-    @Inject(NGDIALOGs_CONFIG)
+    @Inject(NGDIALOGS_CONFIG)
     private globalConfig: NgDialogsGlobalConfig
   ) {}
 
