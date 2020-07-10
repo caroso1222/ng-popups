@@ -1,6 +1,6 @@
 {
   "name": "ngdialogs",
-  "version": "0.1.3",
+  "version": "0.1.5",
   "description": "Alert, confirm and prompt dialogs for Angular",
   "repository": {
     "type": "git",
@@ -14,7 +14,8 @@
     "test": "ng test ngdialogs-demo",
     "lint": "ng lint ngdialogs-demo",
     "build:lib": "ng build --prod ngdialogs",
-    "version": "sync-json -v --property version --source package.json src/lib/package.json"
+    "sync-version": "sync-json -v --property version --source package.json projects/ngdialogs/package.json",
+    "version": "npm run build:lib && npm run sync-version"
   },
   "private": true,
   "dependencies": {
