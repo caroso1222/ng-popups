@@ -1,6 +1,6 @@
 {
   "name": "ng-popups",
-  "version": "9.0.0-beta.4",
+  "version": "9.0.0-beta.5",
   "description": "Alert, confirm and prompt dialogs for Angular",
   "repository": {
     "type": "git",
