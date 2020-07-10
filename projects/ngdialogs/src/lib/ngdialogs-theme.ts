@@ -1,1 +1,1 @@
-export type NgDialogTheme = 'default' | 'dark' | 'material';
+export type NgDialogsTheme = 'default' | 'dark' | 'material';

@@ -1,7 +1,7 @@
 import {
-  NgDialogType,
-  NgDialogResult,
-  NgDialogPromptResult,
+  NgDialogsType,
+  NgDialogsResult,
+  NgDialogsPromptResult,
 } from './ngdialogs-types';
 import { NgDialog } from './ngdialog';
 import {
@@ -10,7 +10,7 @@ import {
   ComponentFactoryResolver,
   Injector,
 } from '@angular/core';
-import { ComponentPortal, DomPortalHost } from '@angular/cdk/portal';
+import { ComponentPortal, DomPortalOutlet } from '@angular/cdk/portal';
 import { NgDialogsLocalConfig } from './ngdialogs.config';
 import { Observable } from 'rxjs';
 
@@ -24,7 +24,7 @@ export class NgDialogsService {
   /**
    * Reference to the main Portal Host.
    */
-  private bodyPortalHost: DomPortalHost;
+  private bodyPortalHost: DomPortalOutlet;
 
   constructor(
     private appRef: ApplicationRef,
@@ -35,7 +35,7 @@ export class NgDialogsService {
     this.ngDialogPortal = new ComponentPortal(NgDialog);
 
     // Create a PortalHost anchored in document.body
-    this.bodyPortalHost = new DomPortalHost(
+    this.bodyPortalHost = new DomPortalOutlet(
       document.body,
       this.componentFactoryResolver,
       this.appRef,
@@ -48,8 +48,8 @@ export class NgDialogsService {
    * @param message - text to render inside the dialog
    * @param config - optional configuration object
    */
-  alert(message: string, config?: NgDialogsLocalConfig): NgDialogResult {
-    return this.createNgDialogComponent(NgDialogType.Alert, message, config);
+  alert(message: string, config?: NgDialogsLocalConfig): NgDialogsResult {
+    return this.createNgDialogComponent(NgDialogsType.Alert, message, config);
   }
 
   /**
@@ -57,8 +57,8 @@ export class NgDialogsService {
    * @param message - text to render inside the dialog
    * @param config - optional configuration object
    */
-  confirm(message: string, config?: NgDialogsLocalConfig): NgDialogResult {
-    return this.createNgDialogComponent(NgDialogType.Confirm, message, config);
+  confirm(message: string, config?: NgDialogsLocalConfig): NgDialogsResult {
+    return this.createNgDialogComponent(NgDialogsType.Confirm, message, config);
   }
 
   /**
@@ -66,8 +66,8 @@ export class NgDialogsService {
    * @param message - text to render inside the dialog
    * @param config - optional configuration object
    */
-  prompt(prompt: string, config?: NgDialogsLocalConfig): NgDialogResult {
-    return this.createNgDialogComponent(NgDialogType.Prompt, prompt, config);
+  prompt(prompt: string, config?: NgDialogsLocalConfig): NgDialogsResult {
+    return this.createNgDialogComponent(NgDialogsType.Prompt, prompt, config);
   }
 
   /**
@@ -77,10 +77,10 @@ export class NgDialogsService {
    * @param config - optional configuration object
    */
   private createNgDialogComponent(
-    type: NgDialogType,
+    type: NgDialogsType,
     message: string,
     config?: NgDialogsLocalConfig
-  ): NgDialogResult {
+  ): NgDialogsResult {
     const componentRef = this.bodyPortalHost.attachComponentPortal(
       this.ngDialogPortal
     );
@@ -90,7 +90,7 @@ export class NgDialogsService {
     ngDialog.type = type;
     // subscribe to the dialog closing event so that the portal can actually be detached
     const subscription = ngDialog.$close.subscribe(
-      (res: boolean | NgDialogPromptResult) => {
+      (res: boolean | NgDialogsPromptResult) => {
         this.bodyPortalHost.detach();
         subscription.unsubscribe();
       }
@@ -98,7 +98,7 @@ export class NgDialogsService {
     return new Observable((observer) => {
       // subscribe to the dialog closing event to forward the event to the caller
       const _subscription = ngDialog.$close.subscribe(
-        (res: boolean | NgDialogPromptResult) => {
+        (res: boolean | NgDialogsPromptResult) => {
           _subscription.unsubscribe();
           observer.next(res);
         }
