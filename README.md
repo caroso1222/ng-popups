@@ -15,13 +15,12 @@ Easily create **alert, confirm and prompt dialogs** for Angular. Think of `windo
 
 ## Features
 
-- Cross browser compatible
-- Responsive
-- Easy to use
-- Highly configurable
-- Packaged with the official Angular format
-- Good a11y and i18n support
-- Support for Angular v9 and v10
+- 🎩 Cross browser compatible
+- 📱 Responsive
+- 🐥 Easy to use
+- 🔥 Highly configurable
+- 👀 Good a11y and i18n support
+- 💥 Support for Angular v9 and v10
 
 ## Installation
 

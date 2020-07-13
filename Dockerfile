@@ -14,6 +14,8 @@ RUN npm set progress=false && npm i --silent
 # Copy app files to out container
 COPY . .
 
+ARG NODE_OPTIONS=--max_old_space_size=4096
+
 # Build lib
 RUN $(npm bin)/ng build --prod ng-popups
 
