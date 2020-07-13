@@ -1,15 +1,22 @@
-# NgPopups
+<div align="center">
+  <h1>NgPopups</h1>
+  <div>
 
 [![npm version](https://badge.fury.io/js/ng-popups.svg)](https://badge.fury.io/js/ng-popups)
 [![MIT](https://img.shields.io/packagist/l/doctrine/orm.svg?style=flat-square)](LICENSE)
 [![PRs](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](https://github.com/caroso1222/ng-popups/pulls)
 [![Build Status](https://travis-ci.org/caroso1222/ng-popups.svg?branch=master)](https://travis-ci.org/caroso1222/ng-popups)
+</div>
+	<p>
+    <b>Alert, confirm and prompt dialogs for Angular</b>
+	</p>
+  <img src="media/demo.gif">
 
-Easily create **alert, confirm and prompt dialogs** for Angular. Think of `window.alert` or `window.confirm`, but more angularish and way prettier.
+</div>
+
+<hr>
 
 **Demo:** [https://ng-popups.carlosroso.com/](https://ng-popups.carlosroso.com/)
-
-![demo gif](https://user-images.githubusercontent.com/3689856/36462314-a970271a-1690-11e8-9949-183e0ce3bf54.gif)
 
 *This repo was formerly known as ngx-cool-dialogs.*
 
