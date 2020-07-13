@@ -14,6 +14,9 @@ RUN npm set progress=false && npm i --silent
 # Copy app files to out container
 COPY . .
 
+# Build lib
+RUN $(npm bin)/ng build --prod ng-popups
+
 # Build app
 RUN $(npm bin)/ng build --prod ng-popups-demo
 
