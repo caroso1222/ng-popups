@@ -1,5 +1,10 @@
 # NgPopups
 
+[![npm version](https://badge.fury.io/js/ng-popups.svg)](https://badge.fury.io/js/ng-popups)
+[![MIT](https://img.shields.io/packagist/l/doctrine/orm.svg?style=flat-square)](LICENSE)
+[![PRs](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](https://github.com/caroso1222/ng-popups/pulls)
+[![Build Status](https://travis-ci.org/caroso1222/ng-popups.svg?branch=master)](https://travis-ci.org/caroso1222/ng-popups)
+
 Easily create **alert, confirm and prompt dialogs** for Angular. Think of `window.alert` or `window.confirm`, but more angularish and way prettier.
 
 **Demo:** [https://ngx-cool-dialogs.carlosroso.com/](https://ngx-cool-dialogs.carlosroso.com/)
@@ -14,6 +19,7 @@ Easily create **alert, confirm and prompt dialogs** for Angular. Think of `windo
 - Highly configurable
 - Packaged with the official Angular format
 - Good a11y and i18n support
+- Support for Angular v9
 
 ## Installation
 
@@ -157,7 +163,7 @@ Run the demo via `npm start`. All the library code lies inside `projects/ng-popu
 
 ## Licence
 
-MIT
+MIT © [Carlos Roso](https://carlosroso.com/)
 
 ---
 

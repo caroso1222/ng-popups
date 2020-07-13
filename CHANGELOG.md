@@ -1,3 +1,12 @@
+# 9.0.0 (13-07-2020)
+
+Repo and NPM package rename. The previous name was `ngx-cool-dialogs`. The new name is `ng-popups`.
+
+To migrate you'll need to search and replace the following expressions:
+
+- `NgxCoolDialogs` -> `NgPopups`
+- `ngx-cool-dialogs` -> `ng-popups`
+
 # 0.1.3 (02-04-2018)
 
 ## Fix
