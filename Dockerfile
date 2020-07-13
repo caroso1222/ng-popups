@@ -1,6 +1,6 @@
 ### STAGE 1: Build ###
 
-FROM node:9-alpine as builder
+FROM node:10-alpine as builder
 
 # Change directory so that our commands run inside this new directory
 WORKDIR /usr/src/app
