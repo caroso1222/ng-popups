@@ -11,6 +11,8 @@ Easily create **alert, confirm and prompt dialogs** for Angular. Think of `windo
 
 ![demo gif](https://user-images.githubusercontent.com/3689856/36462314-a970271a-1690-11e8-9949-183e0ce3bf54.gif)
 
+*This repo was formerly known as ngx-cool-dialogs.*
+
 ## Features
 
 - Cross browser compatible
