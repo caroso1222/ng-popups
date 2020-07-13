@@ -21,7 +21,7 @@ Easily create **alert, confirm and prompt dialogs** for Angular. Think of `windo
 - Highly configurable
 - Packaged with the official Angular format
 - Good a11y and i18n support
-- Support for Angular v9
+- Support for Angular v9 and v10
 
 ## Installation
 
