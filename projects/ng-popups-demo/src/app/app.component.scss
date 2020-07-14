@@ -73,6 +73,21 @@
   }
 }
 
+.credits-link {
+  display: inline-block;
+  margin-top: 20px;
+  font-weight: 600;
+  text-decoration: none;
+
+  &, &:hover {
+    color: #000000;
+  }
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
 .feature {
   font-weight: 700;
   display: inline-block;
@@ -109,6 +124,11 @@
 
   .github-btn {
     width: 100%;
+  }
+
+  .credits-link {
+    display: block;
+    text-align: center;
   }
 }
 
